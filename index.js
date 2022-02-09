@@ -162,57 +162,15 @@ clock.ontick = (evt) => {
    /*--- OPTION 2: TIME IMAGES FOR 12 HOUR CLOCK---*/
   //set class of each # IMAGE individually if needed for formatting
   if (preferences.clockDisplay === "12h") {
-    colon.image = "minutesfile/colon.png";
+    colon.image = "numbers/colon.png";
     myLabel.class = "myLabel";
     hours = hours % 12 || 12;
-  
-  if (hours == 1){hourhand.image = "hoursfile/hour1.png";
-                  hourhand.class = "hour1";                   }
-  else if (hours == 2){hourhand.image = "hoursfile/hour2.png";
-                      hourhand.class = "hour";                }
-  else if (hours == 3){hourhand.image = "hoursfile/hour3.png";}
-  else if (hours == 4){hourhand.image = "hoursfile/hour4.png";}
-  else if (hours == 5){hourhand.image = "hoursfile/hour5.png";}
-  else if (hours == 6){hourhand.image = "hoursfile/hour6.png";}
-  else if (hours == 7){hourhand.image = "hoursfile/hour7.png";}
-  else if (hours == 8){hourhand.image = "hoursfile/hour8.png";}
-  else if (hours == 9){hourhand.image = "hoursfile/hour9.png";
-                        hourhand.class = "hour11";  }
-  else if (hours == 10){hourhand.image = "hoursfile/hour10.png";}
-  else if (hours == 11){hourhand.image = "hoursfile/hour11.png";
-                        hourhand.class = "hour11";}
-  else{hourhand.image = "hoursfile/hour12.png";
-                    hourhand.class = "hour12";}
-  
+    hourhand.image = "numbers/" + hours + ".png";
   //Minute hand % 10 will return ones digit
-  if (mins%10 == 1 ){minutehand2.image =      "minutesfile/1.png";     
-                          minutehand2.class = "minute3";}
-  else if (mins%10 == 2 ){minutehand2.image = "minutesfile/2.png";
-                          minutehand2.class = "minute2";}
-  else if (mins%10 == 3 ){minutehand2.image = "minutesfile/3.png";
-                          minutehand2.class =  "minute2";}
-  else if (mins%10 == 4 ){minutehand2.image = "minutesfile/4.png";}
-  else if (mins%10 == 5 ){minutehand2.image = "minutesfile/5.png";}
-  else if (mins%10 == 6 ){minutehand2.image = "minutesfile/6.png";}
-  else if (mins%10 == 7 ){minutehand2.image = "minutesfile/7.png";}
-  else if (mins%10 == 8 ){minutehand2.image = "minutesfile/8.png";}
-  else if (mins%10 == 9 ){minutehand2.image = "minutesfile/9.png";}
-  else if (mins%10 == 0 ){minutehand2.image = "minutesfile/0.png";
-                          minutehand2.class = "minute2";}
-  else{minutehand2.image = " ";}
-  
+   minutehand2.image =      "numbers/" + mins%10 + ".png";     
   //Minute hand /10 will return tens digit, but ints don't exist in Javascript
   //Use the parseInt function to turn quotient into an integer
-       if (parseInt(mins/10) == 1 ){ minutehand.image = "minutesfile/1.png";
-                                     minutehand.class = "minute1";}         
-       if (parseInt(mins/10) == 2 ){ minutehand.image = "minutesfile/2.png";
-                                     minutehand.class = "minute"; }
-       if (parseInt(mins/10) == 3 ){ minutehand.image = "minutesfile/3.png";}
-       if (parseInt(mins/10) == 4 ){ minutehand.image = "minutesfile/4.png";}                                 
-       if (parseInt(mins/10) == 5 ){ minutehand.image = "minutesfile/5.png";}
-       if (parseInt(mins/10) == 6 ){ minutehand.image = "minutesfile/6.png";}
-       if (parseInt(mins/10) == 0 ){ minutehand.image = "minutesfile/0.png";}
-  } 
+   minutehand.image = "numbers/" + parseInt(mins/10)+ ".png";} 
     
     /*--- OPTION 2: TIME TEXT FOR 24 HOUR CLOCK ---*/
     //This is how to set a clock with text
@@ -323,8 +281,7 @@ function checkAndUpdateBatteryLevel() {
 //"file location" + number variable + ".imageformat" 
 
  function changeBackground(){ 
-         
-   else {}  
+  background.image = "night.jpeg";
 }
 
 //Animation Functions   
