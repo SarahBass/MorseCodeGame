@@ -1,5 +1,5 @@
 # FitbitDogwatch
-Versa 3 and Sense Virtual Space Pet
+NOT YET COMPLETE -Versa 3 and Sense Virtual Space Pet
 
 ![alt text](https://github.com/SarahBass/ClockfacePomeranianFitBit/blob/main/animatedpngfitbitdog.png)
 
