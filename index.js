@@ -71,17 +71,22 @@ clock.ontick = (evt) => {
   let years = today.getFullYear();
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
- 
-  if ( seconds % 5 == 0){wordLabel.text = "press";
-                          morseLabel.text = "....";}
-  if ( seconds % 5 == 1){wordLabel.text = "purple";
-                         morseLabel.text = ".";}
-  if ( seconds % 5 == 2){wordLabel.text = "button";
-                         morseLabel.text = "-.--";}
-  if ( seconds % 5 == 3){wordLabel.text = "to";
-                         morseLabel.text = "-.--";}
-  if ( seconds % 5 == 4){wordLabel.text = "start!";
-                         morseLabel.text = "---";}
+  
+  if ( seconds % 5 == 0){wordLabel.text = "press";}
+  if ( seconds % 5 == 1){wordLabel.text = "the";}
+  if ( seconds % 5 == 2){wordLabel.text = "button";}
+  if ( seconds % 5 == 3){wordLabel.text = "to";}
+  if ( seconds % 5 == 4){wordLabel.text = "start!";}
+  
+  if ( seconds % 8 == 0){menu.image = "background/purple.png";}
+  if ( seconds % 8 == 1){menu.image = "background/yellow.png";}
+  if ( seconds % 8 == 2){menu.image = "background/purple.png";}
+  if ( seconds % 8 == 3){menu.image = "background/yellow.png";}
+  if ( seconds % 8 == 4){menu.image = "background/purple.png";}
+  if ( seconds % 8 == 5){menu.image = "background/yellow.png";}
+  if ( seconds % 8 == 6){menu.image = "background/purple.png";}
+  if ( seconds % 8 == 7){menu.image = "background/purple.png";}
+  
   
  /*--- Update Stats for Screen ---*/
   updateScene();
@@ -119,8 +124,7 @@ function checkAndUpdateBatteryLevel() {
  }
 
  function changebackground(){
- background.image = "background/background.jpeg";
- menu.image = "background/purple.png";}
+ background.image = "background/background.jpeg";}
  
 
 /*----------------------------END OF FUNCTIONS--------------------------------*/
