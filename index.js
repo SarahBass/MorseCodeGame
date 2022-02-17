@@ -5,8 +5,10 @@
  *  Github:     SarahBass
  ---------------------------------------------
  NOTES: 
- All artwork was created by myself using 
- Vectornator. 
+ This Clock will be larger than normal
+ because it has so many image backgrounds.
+ 
+ Images are ALL Free Licence https://unsplash.com
  ---------------------------------------------
 */
 
@@ -46,8 +48,8 @@ const batteryLabel = document.getElementById("batteryLabel");
 const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
-menubutton.class = "menubutton";
 
+menubutton.text = "x";
  menubutton.onactivate = function(evt) {
    buttonnumber++;
   if (buttonnumber > 2){
@@ -69,8 +71,18 @@ clock.ontick = (evt) => {
   let years = today.getFullYear();
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
-  
  
+  if ( seconds % 5 == 0){wordLabel.text = "press";
+                          morseLabel.text = "....";}
+  if ( seconds % 5 == 1){wordLabel.text = "purple";
+                         morseLabel.text = ".";}
+  if ( seconds % 5 == 2){wordLabel.text = "button";
+                         morseLabel.text = "-.--";}
+  if ( seconds % 5 == 3){wordLabel.text = "to";
+                         morseLabel.text = "-.--";}
+  if ( seconds % 5 == 4){wordLabel.text = "start!";
+                         morseLabel.text = "---";}
+  
  /*--- Update Stats for Screen ---*/
   updateScene();
   checkAndUpdateBatteryLevel();
@@ -103,7 +115,6 @@ function checkAndUpdateBatteryLevel() {
  function changeobject(){ }
 
  function changetext(){ 
- morseLabel.text = "- - . .";
  userinputLabel.text = "get started!"; 
  }
 
