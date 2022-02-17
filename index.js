@@ -24,7 +24,7 @@ var delayInMilliseconds = 1000; //1 second
 let buttonnumber = 0;
 let gamenumber = 0;
 let gamestart = 0;
-let code = " ";
+let morsecode = " ";
 let morse = "";
 let letter = "a";
 /*--- Import Information from index.gui ---*/
@@ -113,56 +113,72 @@ function checkAndUpdateBatteryLevel() {
 }
  
 function generateRandomLetter() {
+  let newletter = "a";
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  
-  letter = alphabet[Math.floor(Math.random() * alphabet.length)];
+  newletter = alphabet[Math.floor(Math.random() * alphabet.length)];
+  return newletter;
 }
+                                                
+                                              
 
- function createcode{
-   if letter == a {code = ".-"};
-   if letter == b {code = "-..."};
-   if letter == c {code = "-.-."};
-   if letter == d {code = "-.."};
-   if letter == e {code = "."};
-   if letter == f {code = "..-."};
-   if letter == g {code = "--."};
-   if letter == h {code = "...."};
-   if letter == i {code = ".."};
-   if letter == j {code = ".---"};
-   if letter == k {code = "-.-"};
-   if letter == l {code = ".-.."};
-   if letter == m {code = "--"};
-   if letter == n {code = "-."};
-   if letter == o {code = "---"};
-   if letter == p {code = ".--."};
-   if letter == q {code = "--.-"};
-   if letter == r {code = ".-."};
-   if letter == s {code = "..."};
-   if letter == t {code = "-"};
-   if letter == u {code = "..-"};
-   if letter == v {code = "...-"};
-   if letter == w {code = ".--"};
-   if letter == x {code = "-..-"};
-   if letter == y {code = "-.--"};
-   if letter == z {code = "--.."};
+ function createcode(letter){
+   let code = ".-";
+   if (letter == a) {code = ".-";}
+   if (letter == b) {code = "-...";}
+   if (letter == c) {code = "-.-.";}
+   if (letter == d) {code = "-..";}
+   if (letter == e) {code = ".";}
+   if (letter == f) {code = "..-.";}
+   if (letter == g) {code = "--.";}
+   if (letter == h) {code = "....";}
+   if (letter == i) {code = "..";}
+   if (letter == j) {code = ".---";}
+   if (letter == k) {code = "-.-";}
+   if (letter == l) {code = ".-..";}
+   if (letter == m) {code = "--";}
+   if (letter == n) {code = "-.";}
+   if (letter == o) {code = "---";}
+   if (letter == p) {code = ".--.";}
+   if (letter == q) {code = "--.-";}
+   if (letter == r) {code = ".-.";}
+   if (letter == s) {code = "...";}
+   if (letter == t) {code = "-";}
+   if (letter == u) {code = "..-";}
+   if (letter == v) {code = "...-";}
+   if (letter == w) {code = ".--";}
+   if (letter == x) {code = "-..-";}
+   if (letter == y) {code = "-.--";}
+   if (letter == z) {code = "--..";}
+ return code;
  }                                               
  
- function flashdah(){
+ function flashletter(letter){
+   let codeflash = createcode(letter);
+   Array.from(codeflash);
+    setTimeout(function() {wordLabel.text = " ";
+                         menu.image = "background/purple.png";}, delayInMilliseconds*5);         
+   for (let i = 0; i < Array.length; i++) {
+   if Array[i] == "-"{ 
+                         setTimeout(function() {wordLabel.text = "-";
+                         menu.image = "background/yellow.png";}, delayInMilliseconds*10);}
+   if Array[i] == "."{ 
+                         setTimeout(function() {wordLabel.text = "Watch";
+                         menu.image = "background/yellow.png";}, delayInMilliseconds)*5;}
+   setTimeout(function() {wordLabel.text = " ";
+                         menu.image = "background/purple.png";}, delayInMilliseconds*5);          
+   }
    
- }
-                                                
-  function flashdih(){
-   
- }                                               
+ }                                             
                                                 
  function play(){
-   While (morse != code){
+   while (createcode(letter) !== code){
     button1.class = "clear text-button bottom left "; 
     button2.class = "clear text-button bottom right "; 
     button1.text = "-"; 
     button2.text = "."; 
    
-    button1.onactivate = function(evt) {vibration.start("nudge");
+    button1.onactivate = function(evt) {
+                                       vibration.start("nudge");
                                        morse = +="-";
                                        console.log("morse:" + morse );}
     button2.onactivate = function(evt) {vibration.start("bump");
