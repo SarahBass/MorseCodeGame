@@ -8,12 +8,36 @@
   
   <!-- clock information set for 24 hour clock and DD MM YYYY-->
   
-  <text id="morseLabel" class="showLabel">
-  <text id="wordLabel" class= "labelyellow"/> 
-      <text id="menubutton"  class= "menubutton"/> 
-      <text id="ballbutton"  class= "ballbutton"/> 
-      <text id="bonebutton" class= "bonebutton"/> 
-      <text id="ufobutton"  class= "ufobutton"/> 
+      <text id="morseLabel" class="showLabel">
+      <text id="wordLabel" class= "labelyellow"/> 
+ <use id="menubutton" href="#text-button" y="280" x="-120" height="0"
+    fill="yellow" font-family="System-Regular" font-size="30">
+    <set href="#text" attributeName="text-buffer" to=" " />
+    <set href="#text" attributeName="fill" to="white" />
+    <set href="#text" attributeName="y" to="12" />
+  </use> 
+        
+  <use id="ballbutton" href="#text-button" y="140" x="-120" height="0"
+    fill="yellow" font-family="System-Regular" font-size="30">
+    <set href="#text" attributeName="text-buffer" to=" " />
+    <set href="#text" attributeName="fill" to="white" />
+    <set href="#text" attributeName="y" to="12" />
+  </use> 
+        
+  <use id="bonebutton" href="#text-button" y="85" x="-120" height="0"
+    fill="yellow" font-family="System-Regular" font-size="30">
+    <set href="#text" attributeName="text-buffer" to=" " />
+    <set href="#text" attributeName="fill" to="white" />
+    <set href="#text" attributeName="y" to="12" />
+  </use>       
+      
+    <use id="ufobutton" href="#text-button" y="200" x="-120" height="0"
+    fill="yellow" font-family="System-Regular" font-size="30">
+    <set href="#text" attributeName="text-buffer" to=" " />
+    <set href="#text" attributeName="fill" to="white" />
+    <set href="#text" attributeName="y" to="12" />
+  </use>   
+     
   <!-- battery information -->
   <text id="batteryLabel" x="243" y="23" class="label" />
   
