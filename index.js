@@ -31,6 +31,7 @@ let ufonumber = 0;
 let bonenumber = 0;
 let ballnumber = 0;
 let gamenumber = 0;
+let gamestart = 0;
 let foodnumber = 0;
 let changetextnumber = 0;
 /*--- Import Information from index.gui ---*/
@@ -91,11 +92,13 @@ const wordLabel = document.getElementById("wordLabel");
    bonenumber = 0;
   ufonumber = 0;
   ballnumber++;
-  if (ballnumber > 2){
-    ballnumber = 0;}
+  if (ballnumber > 0){
+    ballnumber = 0;
+    buttonnumber = 0;}
   vibration.start("confirmation-max");
-  console.log("ball number :" + ballnumber)
+  console.log("ball number :" + ballnumber);
    gamenumber++;
+  console.log("game number :" + gamenumber)
  }
  
    ufobutton.onactivate = function(evt) {
@@ -166,11 +169,82 @@ clock.ontick = (evt) => {
   if ( seconds % 24 == 21){menu.image = "background/yellow.png";}
   if ( seconds % 24 == 22){menu.image = "background/purple.png";}
   if ( seconds % 24 == 23){menu.image = "background/purple.png";}}
+  
+  if ((gamenumber > 0)&&(gamestart == 0)){
+    
+  if ( seconds % 4 == 0){wordLabel.text = "ready?";
+                          menu.image = "background/yellow.png";}
+  if ( seconds % 4 == 1){wordLabel.text = "get set";
+                        menu.image = "background/yellow.png";}
+  if ( seconds % 4 == 2){wordLabel.text = "go!";
+                        menu.image = "background/yellow.png";}
+  if ( seconds % 4 == 3){wordLabel.text = "go!";
+                        menu.image = "background/yellow.png";
+                        gamestart++;}}
+  //settings.brightnessOverride.dim;
+  //settings.brightnessOverride.max;
+   if (gamestart == 1){
+     if ( seconds % 11 == 0){wordLabel.text = "candy";
+                          menu.image = "background/purple.png";
+                          cuteobject.image = "object/candy.png";
+                             vibration.stop();
+                          userinputLabel.text = "- . - . ";}
+     if ( seconds % 11 == 1){wordLabel.text = "candy";
+                          menu.image = "background/purple.png";
+                          cuteobject.image = "object/candy.png";
+                             vibration.stop();
+                             userinputLabel.text = "- . - . ";}
+     if ( seconds % 11 == 2){wordLabel.text = "c";
+                          menu.image = "background/yellow.png";
+                          cuteobject.image = "blank.png";
+                             userinputLabel.text = "-";
+                             vibration.start("bump");}
+     if ( seconds % 11 == 3){wordLabel.text = "c";
+                          menu.image = "background/yellow.png";
+                             cuteobject.image = "blank.png";
+                             userinputLabel.text = "-";}
+     if ( seconds % 11 == 4){wordLabel.text = "c";
+                          menu.image = "background/purple.png";
+                             cuteobject.image = "blank.png";
+                             vibration.stop();
+                             userinputLabel.text = "- ";}
+     if ( seconds % 11 == 5){wordLabel.text = "c";
+                          menu.image = "background/yellow.png";
+                              vibration.start("bump");
+                             cuteobject.image = "blank.png";
+                             userinputLabel.text = "- .";}
+     if ( seconds % 11 == 6){wordLabel.text = "c";
+                          menu.image = "background/purple.png";
+                             cuteobject.image = "blank.png";
+                             vibration.stop();
+                             userinputLabel.text = "- . ";}
+     if ( seconds % 11 == 7){wordLabel.text = "c";
+                          menu.image = "background/yellow.png";
+                              vibration.start("bump");
+                             cuteobject.image = "blank.png";
+                             userinputLabel.text = "- . -";}
+     if ( seconds % 11 == 8){wordLabel.text = "c";
+                          menu.image = "background/yellow.png";
+                             cuteobject.image = "blank.png";
+                             userinputLabel.text = "- . -";}
+     if ( seconds % 11 == 9){wordLabel.text = "c";
+                          menu.image = "background/purple.png";
+                             cuteobject.image = "blank.png";
+                             vibration.stop();
+                              userinputLabel.text = "- . - ";}
+     if ( seconds % 11 == 10){wordLabel.text = "c";
+                          menu.image = "background/yellow.png";
+                               vibration.start("bump");
+                              cuteobject.image = "blank.png";
+                               userinputLabel.text = "- . - . ";}}
+  if (gamestart == 2){
+    wordLabel.text = "c";
+    cuteobject.image = "blank.png";
+    
+  };
+  
 
   
-  if(ballnumber == 1){
-    buttonnumber = 0;
-    ballnumber++;   }
   
   
   
