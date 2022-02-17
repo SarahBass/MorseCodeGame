@@ -30,6 +30,7 @@ let buttonnumber = 0;
 let ufonumber = 0;
 let bonenumber = 0;
 let ballnumber = 0;
+let gamenumber = 0;
 let foodnumber = 0;
 let changetextnumber = 0;
 /*--- Import Information from index.gui ---*/
@@ -37,11 +38,13 @@ const myAnimation = document.getElementById("myAnimation");
 myAnimation.animate("enable");
 let background = document.getElementById("background");
 let menu = document.getElementById("menu");
-let object = document.getElementById("object");
+let cuteobject = document.getElementById("cuteobject");
 let menubutton = document.getElementById("menubutton"); 
 let bonebutton = document.getElementById("bonebutton");  
 let ufobutton = document.getElementById("ufobutton");  
-let ballbutton = document.getElementById("ballbutton");  
+let ballbutton = document.getElementById("ballbutton");
+var demoinstance = document.getElementById("demoinstance");
+cuteobject.image = "blank.png";
 
 //Update the clock every second 
 clock.granularity = "seconds";
@@ -53,7 +56,50 @@ const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
 
-ufobutton.onactivate = function(evt) {
+
+
+
+
+ menubutton.onactivate = function(evt) {
+   cuteobject.image = "blank.png";
+   buttonnumber++;
+  if (buttonnumber > 2){
+    buttonnumber = 0;}
+  console.log("button number :" + buttonnumber);
+ 
+ bonebutton.onactivate = function(evt) {
+  foodnumber++; 
+  ballnumber = 0;
+   ufonumber = 0;
+   bonenumber++;
+   buttonnumber++;
+  if (bonenumber > 2){
+    bonenumber = 0;}
+  if (foodnumber > 7){
+    foodnumber = 0;}
+  if ((foodnumber > 0)&&(foodnumber <= 7)){
+    cuteobject.image = "food/"+ foodnumber + ".png";
+  }else {cuteobject.image = "blank.png";}
+  vibration.start("ping");
+  console.log("bone number :" + bonenumber);
+  console.log("food number :" + foodnumber);
+  
+ }
+
+ ballbutton.onactivate = function(evt) {
+  cuteobject.image = "blank.png";
+   bonenumber = 0;
+  ufonumber = 0;
+  ballnumber++;
+  if (ballnumber > 2){
+    ballnumber = 0;}
+  vibration.start("confirmation-max");
+  console.log("ball number :" + ballnumber)
+   gamenumber++;
+ }
+ 
+   ufobutton.onactivate = function(evt) {
+  cuteobject.image = "blank.png";
   ballnumber = 0;
   bonenumber = 0; 
   ufonumber++;
@@ -62,34 +108,7 @@ ufobutton.onactivate = function(evt) {
   vibration.start("confirmation-max");
   console.log("ufo number :" + ufonumber)
  }
-
-ballbutton.onactivate = function(evt) {
-  bonenumber = 0;
-  ufonumber = 0;
-  ballnumber++;
-  if (ballnumber > 2){
-    ballnumber = 0;}
-  vibration.start("confirmation-max");
-  console.log("ball number :" + ballnumber)
-  
- }
-
-bonebutton.onactivate = function(evt) {
-   ballnumber = 0;
-   ufonumber = 0;
-   bonenumber++;
-  if (bonenumber > 2){
-    bonenumber = 0;}
-  vibration.start("confirmation-max");
-  console.log("bone number :" + bonenumber)
-  
- }
-
- menubutton.onactivate = function(evt) {
-   buttonnumber++;
-  if (buttonnumber > 2){
-    buttonnumber = 0;}
-  console.log("button number :" + buttonnumber);
+   
  }
 
 
@@ -104,6 +123,8 @@ clock.ontick = (evt) => {
   let years = today.getFullYear();
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
+  demoinstance.animate("enable"); 
+  
   
      if(buttonnumber >0){ changetextnumber++; }
   
@@ -151,10 +172,7 @@ clock.ontick = (evt) => {
     buttonnumber = 0;
     ballnumber++;   }
   
-  if (bonebutton == 1){
-   foodnumber++;
-   object.image = "food/"+ foodnumber + ".png";
- }else{object.image="blank.png";}
+  
   
  if(ufonumber == 1){background.image = "background/" + dates%10 + ".jpeg";
                    buttonnumber = 0;}
