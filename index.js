@@ -20,7 +20,7 @@ import { today as userActivity } from "user-activity";
 import { vibration } from "haptics";
 
 /*--- Create Local Variables for Information Storage ---*/
-var delayInMilliseconds = 1000; //1 second
+var delayInMilliseconds = 100; //1 second
 let buttonnumber = 0;
 let gamenumber = 0;
 let gamestart = 0;
@@ -58,31 +58,51 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
  }
 /*--- turn on and off start text ---*/                                                  
   userinputLabel.text = "get started!";
-  setTimeout(function() {wordLabel.text = "press";}, delayInMilliseconds);
-  setTimeout(function() {wordLabel.text = "button";}, delayInMilliseconds);
-  setTimeout(function() {wordLabel.text = "to";}, delayInMilliseconds);
-  setTimeout(function() {wordLabel.text = "start!";}, delayInMilliseconds);                                             
+  setTimeout(function() {wordLabel.text = "press";}, delayInMilliseconds*10);
+  setTimeout(function() {wordLabel.text = "button";}, delayInMilliseconds*10);
+  setTimeout(function() {wordLabel.text = "to";}, delayInMilliseconds*10);
+  setTimeout(function() {wordLabel.text = "start!";}, delayInMilliseconds*10);                                             
 
   if ((gamenumber > 0)&&(gamestart == 0)){
     
   setTimeout(function() {wordLabel.text = "Watch";
-                         menu.image = "background/purple.png";}, delayInMilliseconds);                       
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10);                      
   setTimeout(function() {wordLabel.text = "the";
-                         menu.image = "background/purple.png";}, delayInMilliseconds);
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10);
   setTimeout(function() {wordLabel.text = "pattern";
-                         menu.image = "background/purple.png";}, delayInMilliseconds);
-                         gamestart++;
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10);
+  setTimeout(function() {letter = generateRandomLetter();
+                          wordLabel.text = letter;
+                          morsecode = createcode(letter);
+                          userinputLabel.text = morsecode;
+                          flashletter(letter);}, delayInMilliseconds*10);
+  setTimeout(function() {
+                          wordLabel.text = letterword;
+                          morsecode = createcode(letter);
+                          cuteobject.image = "object/"+ letter + 1 +".png";
+                          userinputLabel.text = morsecode;
+                          flashletter(letter);}, delayInMilliseconds*10);
+  gamestart++;
+  cuteobject.image = "blank.png;
   }
                                                 
    if ((gamenumber > 0)&&(gamestart == 1)){
        setTimeout(function() {wordLabel.text = "ready?";
-                         menu.image = "background/purple.png";}, delayInMilliseconds);
+                         menu.image = "background/purple.png";}, delayInMilliseconds*5);
                          
   setTimeout(function() {wordLabel.text = "get set";
-                         menu.image = "background/purple.png";}, delayInMilliseconds);
+                         menu.image = "background/yellow.png";}, delayInMilliseconds*5);
   setTimeout(function() {wordLabel.text = "go!";
-                         menu.image = "background/purple.png";}, delayInMilliseconds);
-    play();
+                         menu.image = "background/purple.png";}, delayInMilliseconds*5);
+     for(let i = 0; i < createcode(letter).length; i++){morse = play();}
+    
+     
+     setTimeout(function() {wordLabel.text = "correct!";
+                             cuteobject.image = right.png;
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10); 
+     setTimeout(function() {wordLabel.text = "wrong!";
+                         cuteobject.image = wrong.png;   
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10); 
                                        
    }
      
@@ -171,7 +191,7 @@ function generateRandomLetter() {
  }                                             
                                                 
  function play(){
-   while (createcode(letter) !== code){
+  
     button1.class = "clear text-button bottom left "; 
     button2.class = "clear text-button bottom right "; 
     button1.text = "-"; 
@@ -184,7 +204,8 @@ function generateRandomLetter() {
     button2.onactivate = function(evt) {vibration.start("bump");
                                             morse = +=".";
                                        console.log("morse:" + morse ); }
-   }
+   
+ return morse;
  }                                           
                                                 
 /*----------------------------END OF FUNCTIONS--------------------------------*/
