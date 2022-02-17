@@ -2,6 +2,7 @@
   <defs>
     <link rel="stylesheet" href="styles.css" />
     <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
     <symbol id="frames" href="#sprite-image">
       <animate id="anim" attributeName="value" begin="enable"
           from="1" to="5" dur="0.5"
