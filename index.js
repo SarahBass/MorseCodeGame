@@ -27,7 +27,9 @@ import { vibration } from "haptics";
 
 /*--- Create Local Variables for Information Storage ---*/
 let buttonnumber = 0;
-
+let ufonumber = 0;
+let bonenumber = 0;
+let ballnumber = 0;
 /*--- Import Information from index.gui ---*/
 const myAnimation = document.getElementById("myAnimation");
 myAnimation.animate("enable");
@@ -49,15 +51,36 @@ const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
 
-menubutton.text = "x";
-ufobutton.text = "x";
-bonebutton.text = "x";
-ballbutton.text = "x";
+ufobutton.onactivate = function(evt) {
+  ballnumber = 0;
+  bonenumber = 0; 
+  ufonumber++;
+  if (ufonumber > 2){
+    ufonumber = 0;}
+  
+ }
 
+ballbutton.onactivate = function(evt) {
+  bonenumber = 0;
+  ufonumber = 0;
+  ballnumber++;
+  if (ballnumber > 2){
+    ballnumber = 0;}
+  
+ }
+
+bonebutton.onactivate = function(evt) {
+   ballnumber = 0;
+   ufonumber = 0;
+   bonenumber++;
+  if (bonenumber > 2){
+    bonenumber = 0;}
+  
+ }
 
  menubutton.onactivate = function(evt) {
    buttonnumber++;
-  if (buttonnumber > 3){
+  if (buttonnumber > 2){
     buttonnumber = 0;}
   console.log(buttonnumber);
  }
@@ -110,6 +133,7 @@ clock.ontick = (evt) => {
   if ( seconds % 24 == 23){menu.image = "background/purple.png";}
   }else if (buttonnumber == 1){
   menu.image = "background/menupurple.png";
+
   } 
   
  /*--- Update Stats for Screen ---*/
