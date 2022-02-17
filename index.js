@@ -1,14 +1,12 @@
 /*
 ----------------------------------------------
- *  Project:    Star 365 Day Clock Face
+ *  Project:    Morse Code Game
  *  Mail:       darahbass@gmail.com
  *  Github:     SarahBass
  ---------------------------------------------
  NOTES: 
- This Clock will be larger than normal
- because it has so many image backgrounds.
- 
- Images are ALL Free Licence https://unsplash.com
+ All artwork was created by myself using 
+ Vectornator. 
  ---------------------------------------------
 */
 
