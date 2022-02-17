@@ -34,7 +34,7 @@ myAnimation.animate("enable");
 let background = document.getElementById("background");
 let menu = document.getElementById("menu");
 let object = document.getElementById("object");
-let menubutton = document.getElementById("menubutton");  
+let menubutton = document.getElementById("menubutton"); 
 let bonebutton = document.getElementById("bonebutton");  
 let ufobutton = document.getElementById("ufobutton");  
 let ballbutton = document.getElementById("ballbutton");  
@@ -50,15 +50,18 @@ const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
 
 menubutton.text = "x";
+ufobutton.text = "x";
+bonebutton.text = "x";
+ballbutton.text = "x";
+
+
  menubutton.onactivate = function(evt) {
    buttonnumber++;
-  if (buttonnumber > 2){
+  if (buttonnumber > 3){
     buttonnumber = 0;}
   console.log(buttonnumber);
-   if (buttonnumber == 1){
-   menu.image = "background/menupurple.png";}
-   else{menu.image = "background/purple.png"}
  }
+
 
 /*--- CLOCK START ---*/
 clock.ontick = (evt) => {
@@ -78,15 +81,36 @@ clock.ontick = (evt) => {
   if ( seconds % 5 == 3){wordLabel.text = "to";}
   if ( seconds % 5 == 4){wordLabel.text = "start!";}
   
-  if ( seconds % 8 == 0){menu.image = "background/purple.png";}
-  if ( seconds % 8 == 1){menu.image = "background/yellow.png";}
-  if ( seconds % 8 == 2){menu.image = "background/purple.png";}
-  if ( seconds % 8 == 3){menu.image = "background/yellow.png";}
-  if ( seconds % 8 == 4){menu.image = "background/purple.png";}
-  if ( seconds % 8 == 5){menu.image = "background/yellow.png";}
-  if ( seconds % 8 == 6){menu.image = "background/purple.png";}
-  if ( seconds % 8 == 7){menu.image = "background/purple.png";}
+  if ( buttonnumber == 0){
+  if ( seconds % 24 == 0){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 1){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 2){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 3){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 4){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 5){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 6){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 7){menu.image = "background/purple.png";}
   
+  if ( seconds % 24 == 8){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 9){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 10){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 11){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 12){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 13){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 14){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 15){menu.image = "background/yellow.png";}
+  
+  if ( seconds % 24 == 16){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 17){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 18){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 19){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 20){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 21){menu.image = "background/yellow.png";}
+  if ( seconds % 24 == 22){menu.image = "background/purple.png";}
+  if ( seconds % 24 == 23){menu.image = "background/purple.png";}
+  }else if (buttonnumber == 1){
+  menu.image = "background/menupurple.png";
+  } 
   
  /*--- Update Stats for Screen ---*/
   updateScene();
