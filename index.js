@@ -26,6 +26,9 @@ import {goals, today} from "user-activity";
 import { vibration } from "haptics";
 
 /*--- Create Local Variables for Information Storage ---*/
+let ufo = 0;
+let dit = 0;
+let dah = 0;
 let buttonnumber = 0;
 let ufonumber = 0;
 let bonenumber = 0;
@@ -37,6 +40,7 @@ let changetextnumber = 0;
 /*--- Import Information from index.gui ---*/
 const myAnimation = document.getElementById("myAnimation");
 myAnimation.animate("enable");
+
 let background = document.getElementById("background");
 let menu = document.getElementById("menu");
 let cuteobject = document.getElementById("cuteobject");
@@ -56,18 +60,44 @@ const batteryLabel = document.getElementById("batteryLabel");
 const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
-
-
-
-
+const button1 = document.getElementById("button-1");
+const button2 = document.getElementById("button-2");
 
  menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
    buttonnumber++;
-  if (buttonnumber > 2){
+  if (buttonnumber > 1){
     buttonnumber = 0;}
-  console.log("button number :" + buttonnumber);
- 
+  console.log("button number :" + buttonnumber); 
+ }
+
+
+
+/*--- CLOCK START ---*/
+clock.ontick = (evt) => {
+
+  let today = evt.date;
+  let hours = today.getHours();
+  let months = today.getMonth();
+  let days = today.getDay();
+  let dates = today.getDate();
+  let years = today.getFullYear();
+  let mins = util.zeroPad(today.getMinutes());
+  let seconds = today.getSeconds();
+
+  if(ufo > 0){background.image = "background/" + ufo + ".jpeg";
+                   buttonnumber = 0;}
+ else{background.image = "background/background.jpeg";}
+  
+  
+     if(buttonnumber >0){ changetextnumber++; }
+  
+     if (changetextnumber > 0){
+       wordLabel.text = " "
+       userinputLabel.text = "";
+
+if (buttonnumber == 1){
+ menu.image = "background/menupurple.png";                         
  bonebutton.onactivate = function(evt) {
   foodnumber++; 
   ballnumber = 0;
@@ -82,6 +112,7 @@ const wordLabel = document.getElementById("wordLabel");
     cuteobject.image = "food/"+ foodnumber + ".png";
   }else {cuteobject.image = "blank.png";}
   vibration.start("ping");
+   
   console.log("bone number :" + bonenumber);
   console.log("food number :" + foodnumber);
   
@@ -103,38 +134,22 @@ const wordLabel = document.getElementById("wordLabel");
  
    ufobutton.onactivate = function(evt) {
   cuteobject.image = "blank.png";
+   ufo++;
   ballnumber = 0;
   bonenumber = 0; 
   ufonumber++;
-  if (ufonumber > 2){
+     if (ufo > 10){
+    ufo = 0;}
+  if (ufonumber > 1){
     ufonumber = 0;}
+  
   vibration.start("confirmation-max");
   console.log("ufo number :" + ufonumber)
+     console.log("ufo :" + ufo)
+     buttonnumber = 0;
  }
-   
- }
 
-
-/*--- CLOCK START ---*/
-clock.ontick = (evt) => {
-
-  let today = evt.date;
-  let hours = today.getHours();
-  let months = today.getMonth();
-  let days = today.getDay();
-  let dates = today.getDate();
-  let years = today.getFullYear();
-  let mins = util.zeroPad(today.getMinutes());
-  let seconds = today.getSeconds();
-  demoinstance.animate("enable"); 
-  
-  
-     if(buttonnumber >0){ changetextnumber++; }
-  
-     if (changetextnumber > 0){
-       wordLabel.text = " "
-       userinputLabel.text = "";
-       if (buttonnumber == 1){menu.image = "background/menupurple.png";}
+}
        else {menu.image = "background/purple.png";}
      }else{userinputLabel.text = "get started!";
   if ( seconds % 5 == 0){wordLabel.text = "press";}
@@ -181,8 +196,7 @@ clock.ontick = (evt) => {
   if ( seconds % 4 == 3){wordLabel.text = "go!";
                         menu.image = "background/yellow.png";
                         gamestart++;}}
-  //settings.brightnessOverride.dim;
-  //settings.brightnessOverride.max;
+  
    if (gamestart == 1){
      if ( seconds % 11 == 0){wordLabel.text = "candy";
                           menu.image = "background/purple.png";
@@ -236,21 +250,44 @@ clock.ontick = (evt) => {
                           menu.image = "background/yellow.png";
                                vibration.start("bump");
                               cuteobject.image = "blank.png";
-                               userinputLabel.text = "- . - . ";}}
+                               userinputLabel.text = "- . - . ";
+                               gamestart++;}}
   if (gamestart == 2){
     wordLabel.text = "c";
     cuteobject.image = "blank.png";
+    button1.class = "clear text-button bottom left "; 
+    button2.class = "clear text-button bottom right "; 
+    button1.text = "-"; 
+    button2.text = "."; 
+    button1.onactivate = function(evt) {vibration.start("nudge");
+                                       dit++;}
+    button2.onactivate = function(evt) {vibration.start("bump");
+                                       dah++;}
+    if ((dit == 2) && (dah == 2)){gamestart++; 
+                                  cuteobject.image = "right.png";}
+    if ((dit > 2) || (dah > 2)) {cuteobject.image = "wrong.png";
+                                 dit = 0;
+                                 dah = 0;}
     
-  };
+  }
+  
+  if (gamestart == 3){
+    wordLabel.text= "candy";
+    cuteobject.image = "object/candy.png";
+    button1.class = "none text-button bottom left "; 
+    button2.class = "none text-button bottom right "; 
+    button1.text = " "; 
+    button2.text = " "; 
+  }
+  
+
   
 
   
   
   
   
- if(ufonumber == 1){background.image = "background/" + dates%10 + ".jpeg";
-                   buttonnumber = 0;}
- else{background.image = "background/background.jpeg";}
+ 
   
  /*--- Update Stats for Screen ---*/
  
