@@ -30,6 +30,8 @@ let buttonnumber = 0;
 let ufonumber = 0;
 let bonenumber = 0;
 let ballnumber = 0;
+let foodnumber = 0;
+let changetextnumber = 0;
 /*--- Import Information from index.gui ---*/
 const myAnimation = document.getElementById("myAnimation");
 myAnimation.animate("enable");
@@ -57,7 +59,8 @@ ufobutton.onactivate = function(evt) {
   ufonumber++;
   if (ufonumber > 2){
     ufonumber = 0;}
-  
+  vibration.start("confirmation-max");
+  console.log("ufo number :" + ufonumber)
  }
 
 ballbutton.onactivate = function(evt) {
@@ -66,6 +69,8 @@ ballbutton.onactivate = function(evt) {
   ballnumber++;
   if (ballnumber > 2){
     ballnumber = 0;}
+  vibration.start("confirmation-max");
+  console.log("ball number :" + ballnumber)
   
  }
 
@@ -75,6 +80,8 @@ bonebutton.onactivate = function(evt) {
    bonenumber++;
   if (bonenumber > 2){
     bonenumber = 0;}
+  vibration.start("confirmation-max");
+  console.log("bone number :" + bonenumber)
   
  }
 
@@ -82,7 +89,7 @@ bonebutton.onactivate = function(evt) {
    buttonnumber++;
   if (buttonnumber > 2){
     buttonnumber = 0;}
-  console.log(buttonnumber);
+  console.log("button number :" + buttonnumber);
  }
 
 
@@ -98,13 +105,20 @@ clock.ontick = (evt) => {
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
   
+     if(buttonnumber >0){ changetextnumber++; }
+  
+     if (changetextnumber > 0){
+       wordLabel.text = " "
+       userinputLabel.text = "";
+       if (buttonnumber == 1){menu.image = "background/menupurple.png";}
+       else {menu.image = "background/purple.png";}
+     }else{userinputLabel.text = "get started!";
   if ( seconds % 5 == 0){wordLabel.text = "press";}
   if ( seconds % 5 == 1){wordLabel.text = "the";}
   if ( seconds % 5 == 2){wordLabel.text = "button";}
   if ( seconds % 5 == 3){wordLabel.text = "to";}
   if ( seconds % 5 == 4){wordLabel.text = "start!";}
   
-  if ( buttonnumber == 0){
   if ( seconds % 24 == 0){menu.image = "background/purple.png";}
   if ( seconds % 24 == 1){menu.image = "background/yellow.png";}
   if ( seconds % 24 == 2){menu.image = "background/purple.png";}
@@ -130,14 +144,24 @@ clock.ontick = (evt) => {
   if ( seconds % 24 == 20){menu.image = "background/purple.png";}
   if ( seconds % 24 == 21){menu.image = "background/yellow.png";}
   if ( seconds % 24 == 22){menu.image = "background/purple.png";}
-  if ( seconds % 24 == 23){menu.image = "background/purple.png";}
-  }else if (buttonnumber == 1){
-  menu.image = "background/menupurple.png";
+  if ( seconds % 24 == 23){menu.image = "background/purple.png";}}
 
-  } 
+  
+  if(ballnumber == 1){
+    buttonnumber = 0;
+    ballnumber++;   }
+  
+  if (bonebutton == 1){
+   foodnumber++;
+   object.image = "food/"+ foodnumber + ".png";
+ }else{object.image="blank.png";}
+  
+ if(ufonumber == 1){background.image = "background/" + dates%10 + ".jpeg";
+                   buttonnumber = 0;}
+ else{background.image = "background/background.jpeg";}
   
  /*--- Update Stats for Screen ---*/
-  updateScene();
+ 
   checkAndUpdateBatteryLevel();
  
   /*--- Battery Functions ---*/
@@ -157,22 +181,7 @@ function checkAndUpdateBatteryLevel() {
         battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
 }
  
-  
-  
-/*--- Change Date and Background Functions ---*/
-  function updateScene() {
-   changeobject();
-   changetext();
-   changebackground();
-  }
- function changeobject(){ }
 
- function changetext(){ 
- userinputLabel.text = "get started!"; 
- }
-
- function changebackground(){
- background.image = "background/background.jpeg";}
  
 
 /*----------------------------END OF FUNCTIONS--------------------------------*/
