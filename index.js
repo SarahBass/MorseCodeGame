@@ -57,7 +57,8 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
     buttonnumber = 0;}
   console.log("button number :" + buttonnumber); 
  }
-/*--- turn on and off start text ---*/                                                  
+/*--- turn on and off start text ---*/  
+   //play float animation                                               
   userinputLabel.text = "get started!";
   setTimeout(function() {wordLabel.text = "press";}, delayInMilliseconds*10);
   setTimeout(function() {wordLabel.text = "button";}, delayInMilliseconds*10);
@@ -65,7 +66,7 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
   setTimeout(function() {wordLabel.text = "start!";}, delayInMilliseconds*10);                                             
 
   if ((gamenumber > 0)&&(gamestart == 0)){
-    
+  //play wag animation  
   setTimeout(function() {wordLabel.text = "Watch";
                          menu.image = "background/purple.png";}, delayInMilliseconds*10);                      
   setTimeout(function() {wordLabel.text = "the";
@@ -89,6 +90,7 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
   }
                                                 
    if ((gamenumber > 0)&&(gamestart == 1)){
+      //play run animation 
        setTimeout(function() {wordLabel.text = "ready?";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
                          
@@ -98,7 +100,7 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
      cuteobject.image = blank.png; 
      for(let i = 0; i < createcode(letter).length; i++){morse = play();}
-    
+     
      if (morse == morsecode){
      setTimeout(function() {wordLabel.text = "correct!";
                              cuteobject.image = right.png;
@@ -113,6 +115,7 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
    
                                                 
 if ((gamenumber > 0)&&(gamestart == 2)){
+  //play float animation      
   cuteobject.image = "blank.png";
  setTimeout(function() {wordLabel.text = "round 2:"";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
@@ -136,13 +139,20 @@ if ((gamenumber > 0)&&(gamestart == 2)){
                          cuteobject.image = wrong.png;   
                          menu.image = "background/purple.png";}, delayInMilliseconds*10); }
      
-
+gamestart++;
 }
+                                                
+if ((gamenumber > 0)&&(gamestart == 3)){
+  //play sleep animation
+   cuteobject.image = blank.png;
+  menu.image = "background/purple.png";
+   setTimeout(function() {wordLabel.text = "game";}, delayInMilliseconds*10); 
+   setTimeout(function() {wordLabel.text = "over";}, delayInMilliseconds*10); 
+  setTimeout(function() {wordLabel.text = "restart";}, delayInMilliseconds*10); 
+  setTimeout(function() {wordLabel.text = "to";}, delayInMilliseconds*10); 
+  setTimeout(function() {wordLabel.text = "play";}, delayInMilliseconds*10); 
   
-  
-
-  
-  
+}
    
   
  
