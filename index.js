@@ -79,7 +79,7 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
                           userinputLabel.text = morsecode;
                           flashletter(letter);}, delayInMilliseconds*10);
   setTimeout(function() {
-                          wordLabel.text = letterword[letternumber];
+                          wordLabel.text = filewords[letternumber];
                           morsecode = createcode(letter);
                           cuteobject.image = "object/"+ letter + 1 +".png";
                           userinputLabel.text = morsecode;
@@ -96,7 +96,7 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
                          menu.image = "background/yellow.png";}, delayInMilliseconds*5);
   setTimeout(function() {wordLabel.text = "go!";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
-     
+     cuteobject.image = blank.png; 
      for(let i = 0; i < createcode(letter).length; i++){morse = play();}
     
      if (morse == morsecode){
@@ -112,7 +112,33 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
    }
    
                                                 
+if ((gamenumber > 0)&&(gamestart == 2)){
+  cuteobject.image = "blank.png";
+ setTimeout(function() {wordLabel.text = "round 2:"";
+                         menu.image = "background/purple.png";}, delayInMilliseconds*5);
+                         
+  setTimeout(function() {wordLabel.text = "letter";
+                         menu.image = "background/yellow.png";}, delayInMilliseconds*5);
+  setTimeout(function() {wordLabel.text = letter;
+                         menu.image = "background/purple.png";}, delayInMilliseconds*5);
+  setTimeout(function() { wordLabel.text = filewords2[letternumber];
+                          cuteobject.image = "object/"+ letter + 2 +".png";
+                          flashletter(letter);}, delayInMilliseconds*10);
+     cuteobject.image = blank.png;                   
+     for(let i = 0; i < createcode(letter).length; i++){morse = play();}
+    
+     if (morse == morsecode){
+     setTimeout(function() {wordLabel.text = "correct!";
+                             cuteobject.image = right.png;
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10); }
+     if (morse !== morsecode){
+     setTimeout(function() {wordLabel.text = "wrong!";
+                         cuteobject.image = wrong.png;   
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10); }
+     
 
+}
+  
   
 
   
