@@ -5,7 +5,7 @@
  *  Github:     SarahBass
  ---------------------------------------------
  NOTES: 
- All art created by nyself using Vectornator
+ All art created by myself using Vectornator
  ---------------------------------------------
 */
 
@@ -28,6 +28,7 @@ let morsecode = "";
 let morse = "";
 let letter = "a";
 let letternumber = "1";
+
 /*--- Import Information from index.gui ---*/
 const myAnimation = document.getElementById("myAnimation");
 myAnimation.animate("enable");
@@ -47,66 +48,58 @@ const wordLabel = document.getElementById("wordLabel");
 /*--- Update Stats for Screen ---*/
 checkAndUpdateBatteryLevel();
 /*--- Battery Display---*/
-display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}                             
-/*--- Button Click Starts Game ---*/                                             
- menubutton.onactivate = function(evt) {
-   cuteobject.image = "blank.png";
-   buttonnumber++;
-   gamenumber++;
-  if (buttonnumber > 1){
-    buttonnumber = 0;}
-  console.log("button number :" + buttonnumber); 
- }
+display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}});                            
+
 /*--- turn on and off start text ---*/  
    //play float animation                                               
   userinputLabel.text = "get started!";
-  setTimeout(function() {wordLabel.text = "press";}, delayInMilliseconds*10);
-  setTimeout(function() {wordLabel.text = "button";}, delayInMilliseconds*10);
-  setTimeout(function() {wordLabel.text = "to";}, delayInMilliseconds*10);
-  setTimeout(function() {wordLabel.text = "start!";}, delayInMilliseconds*10);                                             
+  setTimeout(() => {wordLabel.text = "press";}, delayInMilliseconds*10);
+  setTimeout(() => {wordLabel.text = "button";}, delayInMilliseconds*10);
+  setTimeout(() => {wordLabel.text = "to";}, delayInMilliseconds*10);
+  setTimeout(() => {wordLabel.text = "start!";}, delayInMilliseconds*10);                                             
 
   if ((gamenumber > 0)&&(gamestart == 0)){
   //play wag animation  
-  setTimeout(function() {wordLabel.text = "Watch";
+  setTimeout(() => {wordLabel.text = "Watch";
                          menu.image = "background/purple.png";}, delayInMilliseconds*10);                      
-  setTimeout(function() {wordLabel.text = "the";
+  setTimeout(() => {wordLabel.text = "the";
                          menu.image = "background/purple.png";}, delayInMilliseconds*10);
-  setTimeout(function() {wordLabel.text = "pattern";
+  setTimeout(() => {wordLabel.text = "pattern";
                          menu.image = "background/purple.png";}, delayInMilliseconds*10);
-  setTimeout(function() {letter = generateRandomLetter();
+  setTimeout(() => {letter = generateRandomLetter();
                           wordLabel.text = letter;
                           letternumber = letter.charCodeAt(0) - 97; 
                           morsecode = createcode(letter);
                           userinputLabel.text = morsecode;
                           flashletter(letter);}, delayInMilliseconds*10);
-  setTimeout(function() {
+ setTimeout(() => {
                           wordLabel.text = filewords[letternumber];
                           morsecode = createcode(letter);
                           cuteobject.image = "object/"+ letter + 1 +".png";
                           userinputLabel.text = morsecode;
                           flashletter(letter);}, delayInMilliseconds*10);
   gamestart++;
-  cuteobject.image = "blank.png;
+  cuteobject.image = "blank.png";
   }
                                                 
    if ((gamenumber > 0)&&(gamestart == 1)){
       //play run animation 
-       setTimeout(function() {wordLabel.text = "ready?";
+       setTimeout(() => {wordLabel.text = "ready?";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
                          
-  setTimeout(function() {wordLabel.text = "get set";
+  setTimeout(() => {wordLabel.text = "get set";
                          menu.image = "background/yellow.png";}, delayInMilliseconds*5);
-  setTimeout(function() {wordLabel.text = "go!";
+ setTimeout(() => {wordLabel.text = "go!";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
      cuteobject.image = blank.png; 
      for(let i = 0; i < createcode(letter).length; i++){morse = play();}
      
      if (morse == morsecode){
-     setTimeout(function() {wordLabel.text = "correct!";
+     setTimeout(() => {wordLabel.text = "correct!";
                              cuteobject.image = right.png;
                          menu.image = "background/purple.png";}, delayInMilliseconds*10); }
      if (morse !== morsecode){
-     setTimeout(function() {wordLabel.text = "wrong!";
+     setTimeout(() => {wordLabel.text = "wrong!";
                          cuteobject.image = wrong.png;   
                          menu.image = "background/purple.png";}, delayInMilliseconds*10); }
      
@@ -117,25 +110,25 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
 if ((gamenumber > 0)&&(gamestart == 2)){
   //play float animation      
   cuteobject.image = "blank.png";
- setTimeout(function() {wordLabel.text = "round 2:"";
+ setTimeout(() => {wordLabel.text = "round 2";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
                          
-  setTimeout(function() {wordLabel.text = "letter";
+  setTimeout(() => {wordLabel.text = "letter";
                          menu.image = "background/yellow.png";}, delayInMilliseconds*5);
-  setTimeout(function() {wordLabel.text = letter;
+ setTimeout(() => {wordLabel.text = letter;
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
-  setTimeout(function() { wordLabel.text = filewords2[letternumber];
+  setTimeout(() => { wordLabel.text = filewords2[letternumber];
                           cuteobject.image = "object/"+ letter + 2 +".png";
                           flashletter(letter);}, delayInMilliseconds*10);
      cuteobject.image = blank.png;                   
      for(let i = 0; i < createcode(letter).length; i++){morse = play();}
     
      if (morse == morsecode){
-     setTimeout(function() {wordLabel.text = "correct!";
+     setTimeout(() => {wordLabel.text = "correct!";
                              cuteobject.image = right.png;
                          menu.image = "background/purple.png";}, delayInMilliseconds*10); }
      if (morse !== morsecode){
-     setTimeout(function() {wordLabel.text = "wrong!";
+     setTimeout(() => {wordLabel.text = "wrong!";
                          cuteobject.image = wrong.png;   
                          menu.image = "background/purple.png";}, delayInMilliseconds*10); }
      
@@ -146,21 +139,26 @@ if ((gamenumber > 0)&&(gamestart == 3)){
   //play sleep animation
    cuteobject.image = blank.png;
   menu.image = "background/purple.png";
-   setTimeout(function() {wordLabel.text = "game";}, delayInMilliseconds*10); 
-   setTimeout(function() {wordLabel.text = "over";}, delayInMilliseconds*10); 
-  setTimeout(function() {wordLabel.text = "restart";}, delayInMilliseconds*10); 
-  setTimeout(function() {wordLabel.text = "to";}, delayInMilliseconds*10); 
-  setTimeout(function() {wordLabel.text = "play";}, delayInMilliseconds*10); 
+   setTimeout(() => {wordLabel.text = "game";}, delayInMilliseconds*10); 
+   setTimeout(() => {wordLabel.text = "over";}, delayInMilliseconds*10); 
+  setTimeout(() => {wordLabel.text = "restart";}, delayInMilliseconds*10); 
+  setTimeout(() => {wordLabel.text = "to";}, delayInMilliseconds*10); 
+  setTimeout(() => {wordLabel.text = "play";}, delayInMilliseconds*10); 
   
 }
    
   
- 
-  
-
-
-  
 /*----------------------------START OF FUNCTIONS--------------------------------*/
+                                                
+ /*--- Button Click Starts Game ---*/                                             
+ menubutton.onactivate = function(evt) {
+   cuteobject.image = "blank.png";
+   buttonnumber++;
+   gamenumber++;
+  if (buttonnumber > 1){
+    buttonnumber = 0;}
+  console.log("button number :" + buttonnumber); 
+ }
 
  /*--- Change Battery RED , GREEN & CHARGE ---*/  
 
@@ -270,16 +268,16 @@ const filewords2 = [
  function flashletter(letter){
    let codeflash = createcode(letter);
    Array.from(codeflash);
-    setTimeout(function() {wordLabel.text = " ";
+    setTimeout(() => {wordLabel.text = " ";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);         
    for (let i = 0; i < Array.length; i++) {
-   if Array[i] == "-"{ 
-                         setTimeout(function() {wordLabel.text = "-";
+   if (Array[i] == "-"){ 
+                         setTimeout(() => {wordLabel.text = "-";
                          menu.image = "background/yellow.png";}, delayInMilliseconds*10);}
-   if Array[i] == "."{ 
-                         setTimeout(function() {wordLabel.text = "Watch";
+   if (Array[i] == "."){ 
+                         setTimeout(() => {wordLabel.text = "Watch";
                          menu.image = "background/yellow.png";}, delayInMilliseconds)*5;}
-   setTimeout(function() {wordLabel.text = " ";
+   setTimeout(() => {wordLabel.text = " ";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);          
    }
    
@@ -294,14 +292,12 @@ const filewords2 = [
    
     button1.onactivate = function(evt) {
                                        vibration.start("nudge");
-                                       morse = +="-";
+                                       morse  += "-";
                                        console.log("morse:" + morse );}
     button2.onactivate = function(evt) {vibration.start("bump");
-                                            morse = +=".";
+                                            morse  +=".";
                                        console.log("morse:" + morse ); }
    
  return morse;
  }                                           
-                                                
-/*----------------------------END OF FUNCTIONS--------------------------------*/
-/*-------------------------------END OF CODE----------------------------------*/
+  
