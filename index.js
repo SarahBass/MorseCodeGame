@@ -32,11 +32,13 @@ let letternumber = "1";
 /*--- Import Information from index.gui ---*/
 const myAnimation = document.getElementById("myAnimation");
 myAnimation.animate("enable");
+const menubutton = document.getElementById("menubutton");
 const button1 = document.getElementById("button-1");
 const button2 = document.getElementById("button-2");
 let background = document.getElementById("background");
-background.image = "background/background";
+background.image = "background/background.jpeg";
 let menu = document.getElementById("menu");
+menu.image = "background/purple.png";
 let cuteobject = document.getElementById("cuteobject");
 var demoinstance = document.getElementById("demoinstance");
 cuteobject.image = "blank.png";
@@ -48,15 +50,24 @@ const wordLabel = document.getElementById("wordLabel");
 /*--- Update Stats for Screen ---*/
 checkAndUpdateBatteryLevel();
 /*--- Battery Display---*/
-display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}});                            
+display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}});         /*--- Button Click Starts Game ---*/                                             
+ menubutton.onactivate = function(evt) {
+   cuteobject.image = "blank.png";
+   buttonnumber++;
+   gamenumber++;
+  if (buttonnumber > 1){
+    buttonnumber = 0;}
+  console.log("button number :" + buttonnumber); 
+ }                   
 
 /*--- turn on and off start text ---*/  
    //play float animation                                               
+ while (gamenumber < 0){
   userinputLabel.text = "get started!";
-  setTimeout(() => {wordLabel.text = "press";}, delayInMilliseconds*10);
-  setTimeout(() => {wordLabel.text = "button";}, delayInMilliseconds*10);
-  setTimeout(() => {wordLabel.text = "to";}, delayInMilliseconds*10);
-  setTimeout(() => {wordLabel.text = "start!";}, delayInMilliseconds*10);                                             
+  setTimeout(() => {wordLabel.text = "press";}, 1000);
+  setTimeout(() => {wordLabel.text = "button";}, 1000);
+  setTimeout(() => {wordLabel.text = "to";}, 1000);
+  setTimeout(() => {wordLabel.text = "start!";}, 1000);                                   }          
 
   if ((gamenumber > 0)&&(gamestart == 0)){
   //play wag animation  
@@ -150,15 +161,7 @@ if ((gamenumber > 0)&&(gamestart == 3)){
   
 /*----------------------------START OF FUNCTIONS--------------------------------*/
                                                 
- /*--- Button Click Starts Game ---*/                                             
- menubutton.onactivate = function(evt) {
-   cuteobject.image = "blank.png";
-   buttonnumber++;
-   gamenumber++;
-  if (buttonnumber > 1){
-    buttonnumber = 0;}
-  console.log("button number :" + buttonnumber); 
- }
+ 
 
  /*--- Change Battery RED , GREEN & CHARGE ---*/  
 
