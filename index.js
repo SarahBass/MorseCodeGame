@@ -24,7 +24,7 @@ var delayInMilliseconds = 100; //1 second
 let buttonnumber = 0;
 let gamenumber = 0;
 let gamestart = 0;
-let morsecode = " ";
+let morsecode = "";
 let morse = "";
 let letter = "a";
 /*--- Import Information from index.gui ---*/
@@ -94,21 +94,22 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
                          menu.image = "background/yellow.png";}, delayInMilliseconds*5);
   setTimeout(function() {wordLabel.text = "go!";
                          menu.image = "background/purple.png";}, delayInMilliseconds*5);
+     
      for(let i = 0; i < createcode(letter).length; i++){morse = play();}
     
-     
+     if (morse == morsecode){
      setTimeout(function() {wordLabel.text = "correct!";
                              cuteobject.image = right.png;
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10); 
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10); }
+     if (morse !== morsecode){
      setTimeout(function() {wordLabel.text = "wrong!";
                          cuteobject.image = wrong.png;   
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10); 
-                                       
-   }
+                         menu.image = "background/purple.png";}, delayInMilliseconds*10); }
      
-    
+    gamestart++;
+   }
    
-
+                                                
 
   
 
@@ -138,9 +139,60 @@ function generateRandomLetter() {
   newletter = alphabet[Math.floor(Math.random() * alphabet.length)];
   return newletter;
 }
-                                                
-                                              
-
+const filewords = [                                                
+"ate",
+"apple",
+"bird",
+"bat",
+"clover",
+"candy",
+"donut",
+"dreidel",
+"exercise",
+"egg",
+"fall",
+"food",
+"guitar",
+"ghost",
+"hat",
+"honey",
+"ice",
+"In-n-Out",
+"jerky",
+"jumbo",
+"king",
+"kabob",
+"linen",
+"lucky",
+"movie",
+"mouse",
+"nice",
+"neat",
+"owl",
+"orange",
+"pretzel",
+"popcorn",
+"quirky",
+"queen",
+"read",
+"reindeer",
+"spider",
+"squirrel",
+"tennis",
+"tooth",
+"until",
+"under",
+"velvet",
+"violet",
+"witch",
+"wreath",
+"xy",
+"xx",
+"yum",
+"yellow",
+"zany",
+"zzz"         
+];
  function createcode(letter){
    let code = ".-";
    if (letter == a) {code = ".-";}
