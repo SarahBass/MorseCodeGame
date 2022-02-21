@@ -184,7 +184,6 @@ checkAndUpdateBatteryLevel();
     background2.image = "background/background.jpeg";
     userinputLabel.text = morsecode;
      menubutton.onactivate = function(evt) {
-   cuteobject.image = "blank.png";
    buttonnumber++;
    gamenumber++;
   console.log("button number :" + buttonnumber); 
@@ -206,8 +205,7 @@ checkAndUpdateBatteryLevel();
      if (word == '-'){ menu.image = "background/yellow.png";
                       wordLabel.text = filewords[letternumber];
                            cuteobject.image = "object/"+ letter + 1 +".png";}
-   if (word == '.'){ menu.image = "background/purple.png";
-                         
+   if (word == '.'){ menu.image = "background/purple.png";  
                         wordLabel.text = letter;
                          cuteobject.image = "blank.png";} }
     
@@ -249,6 +247,8 @@ checkAndUpdateBatteryLevel();
      }
     
        if (gamenumber == 3){
+         dog.image = "blank.png";
+    background2.image = "blank.png";
          menu.image = "background/purple.png"
           menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
@@ -271,8 +271,8 @@ checkAndUpdateBatteryLevel();
     
   
    if (gamenumber ==4){ 
-      dog.image = "blank.png";
-    background2.image = "blank.jpeg";
+      dog.image = "dog.png";
+    background2.image = "background/background.jpeg";
       menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
    buttonnumber++;
@@ -308,7 +308,7 @@ checkAndUpdateBatteryLevel();
     
      if (gamenumber == 5){
           dog.image = "blank.png";
-    background2.image = "blank.jpeg";
+    background2.image = "blank.png";
        userinputLabel.text = " ";
         vibration.stop();
        cuteobject.image = "blank.png";
@@ -337,6 +337,8 @@ checkAndUpdateBatteryLevel();
      }
     
        if (gamenumber == 6){
+          dog.image = "blank.png";
+    background2.image = "blank.png";
          menu.image = "background/purple.png"
           menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
