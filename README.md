@@ -45,7 +45,7 @@ This game includes 2 animations per letter and 3 animations per mode with a tota
 
 The space creature: Is it a cat? Is it a dog? It's a pomeranian! See the cute dog that inspired this app : https://www.instagram.com/koonchki/. 
 This is actually the logo for my "studio" name , Koonchki Studios. A one girl and one dog studio!  Please be respectful, and do not copy my logo dog 
-as it is used for Android app and many other projects that I do. What does "Koonchki" mean? Koonchki is the name my grandmother used to call her grandchildren. She has passed away many years ago, but her silliness still lives on in all our hearts <3
+as it is used for Android app and many other projects that I do. What does "Koonchki" mean? Koonchki is the name my grandmother used to call her grandchildren. She passed away many years ago, but her silliness still lives on in all our hearts <3
 
 All artwork was made in Vectornator, a free art application on ipad. I highly reccomend this program for programming, it is much easier to use than adobe, has tons of resources, and is free! https://www.vectornator.io/. I really love this application, and I can't reccomend enough. I've used AI and honestly this is less  headache by far, although if you are making svg animations, adobe works more smoothly with game design platforms. Many of the objects come from Iconator, a free feature of Vectornator. 
 
