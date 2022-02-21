@@ -360,7 +360,7 @@ checkAndUpdateBatteryLevel();
      menu.image = "blank.png";
        menubutton.onactivate = function(evt) {}
     if (seconds%2 == 0){wordLabel.text = "game";
-  userinputLabel.text = "level: " + letter;}
+  userinputLabel.text = "lvl: " + letter+ " complete";}
     else{wordLabel.text = "over";
   userinputLabel.text = "exit to restart";}}
   
