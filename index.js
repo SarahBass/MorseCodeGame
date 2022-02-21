@@ -12,7 +12,6 @@
 /*--- Import Information from user Account ---*/
 import { settingsStorage } from "settings";
 import { me as appbit } from "appbit";
-import { HeartRateSensor } from "heart-rate";
 import clock from "clock";
 import * as document from "document";
 import { preferences } from "user-settings";
@@ -130,10 +129,13 @@ const menubutton = document.getElementById("menubutton");
 const button1 = document.getElementById("button-1");
 const button2 = document.getElementById("button-2");
 let background = document.getElementById("background");
+let background2 = document.getElementById("background2");
+background2.image = "blank.png";
 background.image = "background/background.jpeg";
 let menu = document.getElementById("menu");
 menu.image = "background/purple.png";
 let cuteobject = document.getElementById("cuteobject");
+let dog = document.getElementById("dog");
 var demoinstance = document.getElementById("demoinstance");
 cuteobject.image = "blank.png";
 // Get a handle on the <text> elements 
@@ -178,6 +180,8 @@ checkAndUpdateBatteryLevel();
 
   
   if (gamenumber ==1){ 
+   dog.image = "dog.png";
+    background2.image = "background/background.jpeg";
     userinputLabel.text = morsecode;
      menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
@@ -189,7 +193,9 @@ checkAndUpdateBatteryLevel();
     
      for (let i = 0; i < morsecode.length; i++){
        word = myArray[i];
-   if (seconds%3 == 0) {  vibration.start("ring"); 
+       
+   if (seconds%3 == 0) {  
+     
    if (word == '-'){ menu.image = "background/yellow.png";
                          wordLabel.text = filewords[letternumber];
                          cuteobject.image = "object/"+ letter + 1 +".png";}
@@ -201,11 +207,11 @@ checkAndUpdateBatteryLevel();
                       wordLabel.text = filewords[letternumber];
                            cuteobject.image = "object/"+ letter + 1 +".png";}
    if (word == '.'){ menu.image = "background/purple.png";
-                         vibration.stop();
+                         
                         wordLabel.text = letter;
                          cuteobject.image = "blank.png";} }
     
-   if (seconds%3 == 2) { vibration.stop();
+   if (seconds%3 == 2) {
                        menu.image = "background/purple.png";
                        wordLabel.text = letter;
                         cuteobject.image = "blank.png";}
@@ -213,6 +219,8 @@ checkAndUpdateBatteryLevel();
   }
     
      if (gamenumber == 2){
+        dog.image = "blank.png";
+    background2.image = "blank.jpeg";
        userinputLabel.text = " ";
         vibration.stop();
        cuteobject.image = "blank.png";
@@ -227,7 +235,7 @@ checkAndUpdateBatteryLevel();
     button2.text = "."; 
    if (morse.length < 4){
     button1.onactivate = function(evt) {
-                                       vibration.start("nudge");
+                                       vibration.start("ping");
                                        morse  += "-";
                                        console.log("morse:" + morse );
                                        morseLabel.text = "morse: " + morse; }
@@ -236,7 +244,7 @@ checkAndUpdateBatteryLevel();
                                        console.log("morse:" + morse );
                                         morseLabel.text = "morse: " + morse;}
        if (morse == morsecode) {gamenumber++;}
-   }else{gamenumber = 3;} 
+   }else{gamenumber++;} 
    
      }
     
@@ -263,6 +271,8 @@ checkAndUpdateBatteryLevel();
     
   
    if (gamenumber ==4){ 
+      dog.image = "blank.png";
+    background2.image = "blank.jpeg";
       menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
    buttonnumber++;
@@ -274,7 +284,7 @@ checkAndUpdateBatteryLevel();
     morse = ""; 
         for (let i = 0; i < morsecode.length; i++){
        word = myArray[i];
-   if (seconds%3 == 0) {  vibration.start("ring"); 
+   if (seconds%3 == 0) {  
    if (word == '-'){ menu.image = "background/yellow.png";
                          wordLabel.text = filewords2[letternumber];
                          cuteobject.image = "object/"+ letter + 2 +".png";}
@@ -286,17 +296,19 @@ checkAndUpdateBatteryLevel();
                            cuteobject.image = "object/"+ letter + 2 +".png";
                      wordLabel.text = filewords2[letternumber];}
    if (word == '.'){ menu.image = "background/purple.png";
-                         vibration.stop();
+                         
                         wordLabel.text = letter;
                          cuteobject.image = "blank.png";} }
     
-   if (seconds%3 == 2) { vibration.stop();
+   if (seconds%3 == 2) { 
                        menu.image = "background/purple.png";
                        wordLabel.text = letter;
                         cuteobject.image = "blank.png";}
     }}
     
      if (gamenumber == 5){
+          dog.image = "blank.png";
+    background2.image = "blank.jpeg";
        userinputLabel.text = " ";
         vibration.stop();
        cuteobject.image = "blank.png";
@@ -311,7 +323,7 @@ checkAndUpdateBatteryLevel();
     button2.text = "."; 
    if (morse.length < 4){
     button1.onactivate = function(evt) {
-                                       vibration.start("nudge");
+                                       vibration.start("ping");
                                        morse  += "-";
                                        console.log("morse:" + morse );
                                        morseLabel.text = "morse: " + morse; }
@@ -320,7 +332,7 @@ checkAndUpdateBatteryLevel();
                                        console.log("morse:" + morse );
                                         morseLabel.text = "morse: " + morse;}
        if (morse == morsecode) {gamenumber++;}
-   }else{gamenumber = 3;} 
+   }else{gamenumber++;} 
    
      }
     
@@ -348,7 +360,14 @@ checkAndUpdateBatteryLevel();
   
       
   if (gamenumber > 6){
-   
+    cuteobject.image = "blank.png";
+   if (seconds%6 == 0){dog.image = "dog1.png";}
+    if (seconds%6 == 1){dog.image = "dog2.png";}
+    if (seconds%6 == 2){dog.image = "dog3.png";}
+    if (seconds%6 == 3){dog.image = "dog4.png";}
+    if (seconds%6 == 4){dog.image = "dog5.png";}
+    if (seconds%6 == 5){dog.image = "dog6.png";}
+    background2.image = "background/background.jpeg";
     button1.onactivate = function(evt) {}
           button2.onactivate = function(evt) {}
      menu.image = "blank.png";
