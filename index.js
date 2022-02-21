@@ -22,8 +22,10 @@ import { vibration } from "haptics";
 /*--- Create Local Variables for Information Storage ---*/
 var delayInMilliseconds = 100; //1 second
 let buttonnumber = 0;
+let scopenumber = 0;
 let gamenumber = 0;
 let gamestart = 0;
+let scopenumber = 0;
 let morsecode = "";
 let morse = "";
 let letter = "a";
@@ -58,16 +60,22 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
   if (buttonnumber > 1){
     buttonnumber = 0;}
   console.log("button number :" + buttonnumber); 
+   console.log("game number :" + gamenumber); 
  }                   
 
 /*--- turn on and off start text ---*/  
    //play float animation                                               
- while (gamenumber < 0){
+if (gamenumber == 0){
   userinputLabel.text = "get started!";
-  setTimeout(() => {wordLabel.text = "press";}, 1000);
-  setTimeout(() => {wordLabel.text = "button";}, 1000);
-  setTimeout(() => {wordLabel.text = "to";}, 1000);
-  setTimeout(() => {wordLabel.text = "start!";}, 1000);                                   }          
+ if (scopenumber == 0){ setTimeout(function() { wordLabel.text = 'press';}, 1000);
+  scopenumber++;}
+ if (scopenumber == 1){ setTimeout(function() { wordLabel.text = 'button'}, 1000);
+  scopenumber++;}
+  if (scopenumber == 2){ setTimeout(function() { wordLabel.text = 'to'}, 1000);
+  scopenumber++;}
+  if (scopenumber == 3){ setTimeout(function() { wordLabel.text = 'start'}, 1000);
+  scopenumber++;}
+            }          
 
   if ((gamenumber > 0)&&(gamestart == 0)){
   //play wag animation  
