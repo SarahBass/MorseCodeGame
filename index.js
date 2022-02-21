@@ -59,9 +59,7 @@ const filewords = [
 "witch",
 "xy",
 "yum",
-"zany",
-       
-];
+"zany"];
 
 const filewords2 = [                                                
 "apple",
@@ -89,9 +87,9 @@ const filewords2 = [
 "wreath",
 "xx",
 "yellow",
-"zzz"         
-];
+"zzz"];
 
+       /*--- Assign Values based on Random Letter---*/
    if (letter == 'a') {morsecode = ".-"; letternumber = 0;}
    if (letter == 'b') {morsecode = "-...";letternumber = 1;}
    if (letter == 'c') {morsecode = "-.-.";letternumber = 2;}
@@ -122,8 +120,8 @@ const filewords2 = [
 /*--- Animation Groups Imported from Index.gui---*/
 var demoinstance = document.getElementById("demoinstance");
 var demogroup = demoinstance.getElementById("demogroup");
- 
 const myAnimation = document.getElementById("myAnimation");
+
 /*--- Import Information from index.gui ---*/
 const menubutton = document.getElementById("menubutton");
 const button1 = document.getElementById("button-1");
@@ -138,17 +136,17 @@ let cuteobject = document.getElementById("cuteobject");
 let dog = document.getElementById("dog");
 var demoinstance = document.getElementById("demoinstance");
 cuteobject.image = "blank.png";
+
 // Get a handle on the <text> elements 
 const batteryLabel = document.getElementById("batteryLabel");
 const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
 
-
-
 //Update the clock every second 
 clock.granularity = "seconds";
 
+//Game is run on clock updates
 clock.ontick = (evt) => {
 
   let today = evt.date;
@@ -160,10 +158,11 @@ clock.ontick = (evt) => {
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
   myAnimation.animate("enable");
-   demoinstance.animate("enable"); 
+  demoinstance.animate("enable"); 
 /*--- Update Stats for Screen ---*/
 checkAndUpdateBatteryLevel();
   
+ //Start Screen Animations
   if (gamenumber == 0){
   userinputLabel.text = "get started!";
     if (seconds%2 == 0){wordLabel.text = "press";}
@@ -174,172 +173,168 @@ checkAndUpdateBatteryLevel();
    gamenumber++;
   console.log("button number :" + buttonnumber); 
    console.log("game number :" + gamenumber); 
- }                   
-  }
+   }}
   
 
-  
+  //Game shows Animation for letter to learn the code
   if (gamenumber ==1){ 
    dog.image = "dog.png";
     background2.image = "background/background.jpeg";
     userinputLabel.text = morsecode;
-     menubutton.onactivate = function(evt) {
-   buttonnumber++;
-   gamenumber++;
+  
+  //activate button for skipping ahead
+  menubutton.onactivate = function(evt) {
+  buttonnumber++;
+  gamenumber++;
   console.log("button number :" + buttonnumber); 
-   console.log("game number :" + gamenumber); 
- }  
-    
+  console.log("game number :" + gamenumber);}  
+   
+  //This plays the animations at the same rate as the morse code. 1 second is a dih, and 2 seconds is a dah
+  //Kind of a sloppy way to do it, because morse code is much faster than 3 seconds per symbol, but it loads the images better than being accurate
+  //The button flashes and the words and animations change to a pattern, example long pause short is "n" in morse code.
      for (let i = 0; i < morsecode.length; i++){
-       word = myArray[i];
-       
-   if (seconds%3 == 0) {  
-     
-   if (word == '-'){ menu.image = "background/yellow.png";
+       word = myArray[i];     
+   if (seconds%3 == 0) { if (word == '-'){ menu.image = "background/yellow.png";
                          wordLabel.text = filewords[letternumber];
                          cuteobject.image = "object/"+ letter + 1 +".png";}
-   if (word == '.'){ menu.image = "background/yellow.png";
+                         if (word == '.'){ menu.image = "background/yellow.png";
                          wordLabel.text = filewords[letternumber];
                          cuteobject.image = "object/"+ letter + 1 +".png";}} 
-   if (seconds%3 == 1) { 
-     if (word == '-'){ menu.image = "background/yellow.png";
-                      wordLabel.text = filewords[letternumber];
-                           cuteobject.image = "object/"+ letter + 1 +".png";}
-   if (word == '.'){ menu.image = "background/purple.png";  
-                        wordLabel.text = letter;
+  if (seconds%3 == 1) { if (word == '-'){ menu.image = "background/yellow.png";
+                         wordLabel.text = filewords[letternumber];
+                         cuteobject.image = "object/"+ letter + 1 +".png";}
+                         if (word == '.'){ menu.image = "background/purple.png";  
+                         wordLabel.text = letter;
                          cuteobject.image = "blank.png";} }
+   if (seconds%3 == 2) {menu.image = "background/purple.png";
+                         wordLabel.text = letter;
+                         cuteobject.image = "blank.png";}}}
     
-   if (seconds%3 == 2) {
-                       menu.image = "background/purple.png";
-                       wordLabel.text = letter;
-                        cuteobject.image = "blank.png";}
-    }
-  }
-    
-     if (gamenumber == 2){
+//The user has clicked the button and now two buttons appear to enter the code. The original button is deactivated and invisible
+if (gamenumber == 2){
         dog.image = "blank.png";
-    background2.image = "blank.jpeg";
-       userinputLabel.text = " ";
+        background2.image = "blank.jpeg";
+        userinputLabel.text = " ";
         vibration.stop();
-       cuteobject.image = "blank.png";
-       menu.image = "blank.png";
-       menubutton.onactivate = function(evt) {}
-      if (seconds%2 == 0) {wordLabel.text = "enter";}
-       else { wordLabel.text = letter;}
-      
-    button1.class = "clear text-button bottom left "; 
-    button2.class = "clear text-button bottom right "; 
-    button1.text = "-"; 
-    button2.text = "."; 
-   if (morse.length < 4){
-    button1.onactivate = function(evt) {
+        cuteobject.image = "blank.png";
+        menu.image = "blank.png";
+        menubutton.onactivate = function(evt) {}
+        if (seconds%2 == 0) {wordLabel.text = "enter";}
+        else { wordLabel.text = letter;}   
+        button1.class = "clear text-button bottom left "; 
+        button2.class = "clear text-button bottom right "; 
+        button1.text = "-"; 
+        button2.text = "."; 
+        if (morse.length < 4){
+                              button1.onactivate = function(evt) {
                                        vibration.start("ping");
                                        morse  += "-";
                                        console.log("morse:" + morse );
-                                       morseLabel.text = "morse: " + morse; }
-    button2.onactivate = function(evt) {vibration.start("bump");
-                                            morse  +=".";
+                                       morseLabel.text = "morse: " + morse;}
+                              button2.onactivate = function(evt) {
+                                       vibration.start("bump");
+                                       morse  +=".";
                                        console.log("morse:" + morse );
-                                        morseLabel.text = "morse: " + morse;}
+                                       morseLabel.text = "morse: " + morse;}
        if (morse == morsecode) {gamenumber++;}
-   }else{gamenumber++;} 
-   
-     }
+       }else{gamenumber++;}}
     
-       if (gamenumber == 3){
-         dog.image = "blank.png";
-    background2.image = "blank.png";
-         menu.image = "background/purple.png"
-          menubutton.onactivate = function(evt) {
-   cuteobject.image = "blank.png";
-   buttonnumber++;
-   gamenumber++;
-  console.log("button number :" + buttonnumber); 
-   console.log("game number :" + gamenumber); 
- }                   
-         morseLabel.text = " ";
-         button1.class = "none text-button bottom left "; 
-    button2.class = "none text-button bottom right "; 
-         button1.onactivate = function(evt) {}
-          button2.onactivate = function(evt) {}
-     if (morse == morsecode){
-     wordLabel.text = "correct!";
-      cuteobject.image = "right.png";}
-     else{
-       wordLabel.text = "wrong!";
-     cuteobject.image = "wrong.png";}}
+if (gamenumber == 3){
+                     //hide elements of animation
+                     dog.image = "blank.png";
+                     background2.image = "blank.png";
+                     morseLabel.text = " ";
+                     //reactivate the skip ahead button
+                     menu.image = "background/purple.png"
+                     menubutton.onactivate = function(evt) {
+                     cuteobject.image = "blank.png";
+                     buttonnumber++;
+                     gamenumber++;
+                     console.log("button number :" + buttonnumber); 
+                     console.log("game number :" + gamenumber); } 
+                     //deactivate the morse code buttons and hide
+                     button1.class = "none text-button bottom left "; 
+                     button2.class = "none text-button bottom right "; 
+                     button1.onactivate = function(evt) {}
+                     button2.onactivate = function(evt) {}
+                    //play animations based on user input being correct or incorrect
+                    if (morse == morsecode){
+                                            wordLabel.text = "correct!";
+                                            cuteobject.image = "right.png";}
+                    else{
+                                            wordLabel.text = "wrong!";
+                                            cuteobject.image = "wrong.png";}}
     
   
-   if (gamenumber ==4){ 
-      dog.image = "dog.png";
-    background2.image = "background/background.jpeg";
-      menubutton.onactivate = function(evt) {
-   cuteobject.image = "blank.png";
-   buttonnumber++;
-   gamenumber++;
-  console.log("button number :" + buttonnumber); 
-   console.log("game number :" + gamenumber); 
- }                   
-    userinputLabel.text = morsecode;
-    morse = ""; 
-        for (let i = 0; i < morsecode.length; i++){
-       word = myArray[i];
-   if (seconds%3 == 0) {  
-   if (word == '-'){ menu.image = "background/yellow.png";
-                         wordLabel.text = filewords2[letternumber];
-                         cuteobject.image = "object/"+ letter + 2 +".png";}
-   if (word == '.'){ menu.image = "background/yellow.png";
-                         wordLabel.text = filewords2[letternumber];
-                         cuteobject.image = "object/"+ letter + 2 +".png";}} 
-   if (seconds%3 == 1) { 
-     if (word == '-'){ menu.image = "background/yellow.png";
-                           cuteobject.image = "object/"+ letter + 2 +".png";
-                     wordLabel.text = filewords2[letternumber];}
-   if (word == '.'){ menu.image = "background/purple.png";
-                         
-                        wordLabel.text = letter;
-                         cuteobject.image = "blank.png";} }
+if (gamenumber ==4){ 
+                    //Call round 2 animations to cover background animations
+                    dog.image = "dog.png";
+                    background2.image = "background/background.jpeg";
+                   //Skip ahead button activated
+                    menubutton.onactivate = function(evt) {
+                    cuteobject.image = "blank.png";
+                    buttonnumber++;
+                    gamenumber++;
+                    console.log("button number :" + buttonnumber); 
+                    console.log("game number :" + gamenumber);}                   
+                   //reset values for Round 2 
+                   userinputLabel.text = morsecode;
+                   morse = ""; 
+                  //Play new animations for round 2 with different graphics and words 
+                  for (let i = 0; i < morsecode.length; i++){
+                  word = myArray[i];
+                  if (seconds%3 == 0) {  
+                                       if (word == '-'){ menu.image = "background/yellow.png";
+                                                         wordLabel.text = filewords2[letternumber];
+                                                         cuteobject.image = "object/"+ letter + 2 +".png";}
+                                       if (word == '.'){ menu.image = "background/yellow.png";
+                                                         wordLabel.text = filewords2[letternumber];
+                                                         cuteobject.image = "object/"+ letter + 2 +".png";}} 
+                  if (seconds%3 == 1) { 
+                                       if (word == '-'){ menu.image = "background/yellow.png";
+                                                         cuteobject.image = "object/"+ letter + 2 +".png";
+                                                         wordLabel.text = filewords2[letternumber];}
+                  if (word == '.'){ menu.image = "background/purple.png";       
+                                    wordLabel.text = letter;
+                                    cuteobject.image = "blank.png";} }
+                  if (seconds%3 == 2) { 
+                                       menu.image = "background/purple.png";
+                                       wordLabel.text = letter;
+                                       cuteobject.image = "blank.png";}}}
     
-   if (seconds%3 == 2) { 
-                       menu.image = "background/purple.png";
-                       wordLabel.text = letter;
-                        cuteobject.image = "blank.png";}
-    }}
+ if (gamenumber == 5){
+                      //hide elements and animations
+                      dog.image = "blank.png";
+                      background2.image = "blank.png";
+                      userinputLabel.text = " ";
+                      vibration.stop();
+                      cuteobject.image = "blank.png";
+                      menu.image = "blank.png";
+                      //deactivate skip ahead button
+                      menubutton.onactivate = function(evt) {}
+                      if (seconds%2 == 0) {wordLabel.text = "enter";}
+                      else { wordLabel.text = letter;}
+                     //activate morse code buttons
+                      button1.class = "clear text-button bottom left "; 
+                      button2.class = "clear text-button bottom right "; 
+                      button1.text = "-"; 
+                      button2.text = "."; 
+                      if (morse.length < 4){button1.onactivate = function(evt) {
+                                                                                vibration.start("ping");
+                                                                                morse  += "-";
+                                                                                console.log("morse:" + morse );
+                                                                                morseLabel.text = "morse: " + morse; }
+                                            button2.onactivate = function(evt) {vibration.start("bump");
+                                                                                morse  +=".";
+                                                                                console.log("morse:" + morse );
+                                                                                morseLabel.text = "morse: " + morse;}
+                      if (morse == morsecode) {gamenumber++;}
+                    }else{gamenumber++;}}
     
-     if (gamenumber == 5){
-          dog.image = "blank.png";
-    background2.image = "blank.png";
-       userinputLabel.text = " ";
-        vibration.stop();
-       cuteobject.image = "blank.png";
-       menu.image = "blank.png";
-       menubutton.onactivate = function(evt) {}
-      if (seconds%2 == 0) {wordLabel.text = "enter";}
-       else { wordLabel.text = letter;}
-      
-    button1.class = "clear text-button bottom left "; 
-    button2.class = "clear text-button bottom right "; 
-    button1.text = "-"; 
-    button2.text = "."; 
-   if (morse.length < 4){
-    button1.onactivate = function(evt) {
-                                       vibration.start("ping");
-                                       morse  += "-";
-                                       console.log("morse:" + morse );
-                                       morseLabel.text = "morse: " + morse; }
-    button2.onactivate = function(evt) {vibration.start("bump");
-                                            morse  +=".";
-                                       console.log("morse:" + morse );
-                                        morseLabel.text = "morse: " + morse;}
-       if (morse == morsecode) {gamenumber++;}
-   }else{gamenumber++;} 
-   
-     }
-    
-       if (gamenumber == 6){
-          dog.image = "blank.png";
-    background2.image = "blank.png";
-         menu.image = "background/purple.png"
+if (gamenumber == 6){
+                     dog.image = "blank.png";
+                     background2.image = "blank.png";
+                     menu.image = "background/purple.png"
           menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
    buttonnumber++;
