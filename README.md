@@ -39,6 +39,11 @@ Images    | Images not included
 
 ## Artwork: 
 
+![alt text](https://github.com/SarahBass/MorseCodeGame/blob/main/1jump.png)
+
 This game includes 2 animations per letter and 3 animations per mode with a total of 14 frames, 2 icons, 55 objects, 2 buttons, and 1 background.
 
 All artwork was made in Vectornator, a free art application on ipad. 
+
+The space creature was inspired by my pomeranian. See the cute dog that inspired this app : https://www.instagram.com/koonchki/
+
