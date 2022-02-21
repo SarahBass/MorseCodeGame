@@ -133,17 +133,17 @@ checkAndUpdateBatteryLevel();
   
   if ((gamenumber > 0)&&(gamestart == 5)){
     if (seconds%2 == 0){wordLabel.text = "game";
-  userinputLabel.text = "you learned " + letter;}}
-    else{wordLabel.text = "over";}
-  userinputLabel.text = "exit to restart";}
-  }
+  userinputLabel.text = "you learned " + letter;}
+    else{wordLabel.text = "over";
+  userinputLabel.text = "exit to restart";}}
+  
   
   for (let i = 0; i < Array.length; i++) {
-   if seconds%3 == 0 {     
+   if (seconds%3 == 0) {     
    if (Array[i] == "-"){ menu.image = "background/yellow.png";}
    if (Array[i] == "."){ 
                          menu.image = "background/yellow.png";}} 
-   if seconds%3 == 1 { 
+   if (seconds%3 == 1) { 
      if (Array[i] == "-"){ menu.image = "background/yellow.png";}
    if (Array[i] == "."){ menu.image = "background/purple.png";} }
    else {menu.image = "background/purple.png";}
