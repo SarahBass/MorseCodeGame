@@ -115,13 +115,7 @@ const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
 
- menubutton.onactivate = function(evt) {
-   cuteobject.image = "blank.png";
-   buttonnumber++;
-   gamenumber++;
-  console.log("button number :" + buttonnumber); 
-   console.log("game number :" + gamenumber); 
- }                   
+
 
 //Update the clock every second 
 clock.granularity = "seconds";
@@ -144,13 +138,26 @@ checkAndUpdateBatteryLevel();
   userinputLabel.text = "get started!";
     if (seconds%2 == 0){wordLabel.text = "press";}
     else{wordLabel.text = "button";}
-   
+    menubutton.onactivate = function(evt) {
+   cuteobject.image = "blank.png";
+   buttonnumber++;
+   gamenumber++;
+  console.log("button number :" + buttonnumber); 
+   console.log("game number :" + gamenumber); 
+ }                   
   }
   
 
   
   if (gamenumber ==1){ 
     userinputLabel.text = morsecode;
+     menubutton.onactivate = function(evt) {
+   cuteobject.image = "blank.png";
+   buttonnumber++;
+   gamenumber++;
+  console.log("button number :" + buttonnumber); 
+   console.log("game number :" + gamenumber); 
+ }                   
     
    if (seconds%6 == 0) {  vibration.start("ring"); 
    if (mArray[0] == "-"){ menu.image = "background/yellow.png";
@@ -199,6 +206,7 @@ checkAndUpdateBatteryLevel();
         vibration.stop();
        cuteobject.image = "blank.png";
        menu.image = "blank.png";
+       menubutton.onactivate = function(evt) {}
       if (seconds%2 == 0) {wordLabel.text = "enter";}
        else { wordLabel.text = letter;}
       
@@ -222,9 +230,19 @@ checkAndUpdateBatteryLevel();
      }
     
        if (gamenumber == 3){
+         menu.image = "background/purple.png"
+          menubutton.onactivate = function(evt) {
+   cuteobject.image = "blank.png";
+   buttonnumber++;
+   gamenumber++;
+  console.log("button number :" + buttonnumber); 
+   console.log("game number :" + gamenumber); 
+ }                   
          morseLabel.text = " ";
          button1.class = "none text-button bottom left "; 
     button2.class = "none text-button bottom right "; 
+         button1.onactivate = function(evt) {}
+          button2.onactivate = function(evt) {}
      if (morse == morsecode){
      wordLabel.text = "correct!";
       cuteobject.image = "right.png";}
@@ -232,28 +250,117 @@ checkAndUpdateBatteryLevel();
        wordLabel.text = "wrong!";
      cuteobject.image = "wrong.png";}}
     
-       if ((gamenumber > 0)&&(gamestart == 3)){
-  if (seconds%2 == 0){ wordLabel.text = letter;
-                     cuteobject.image = "blank.png";}
-    else{wordLabel.text = filewords2[letternumber];
-         cuteobject.image = "object/"+ letter + 2 +".png";}}
   
-  if ((gamenumber > 0)&&(gamestart == 4)){
+   if (gamenumber ==4){ 
+      menubutton.onactivate = function(evt) {
+   cuteobject.image = "blank.png";
+   buttonnumber++;
+   gamenumber++;
+  console.log("button number :" + buttonnumber); 
+   console.log("game number :" + gamenumber); 
+ }                   
+    userinputLabel.text = morsecode;
+    morse = ""; 
+   if (seconds%6 == 0) {  vibration.start("ring"); 
+   if (mArray[0] == "-"){ menu.image = "background/yellow.png";
+                         wordLabel.text = filewords2[letternumber];
+                         cuteobject.image = "object/"+ letter + 2 +".png";}
+   if (mArray[0] == "."){ menu.image = "background/yellow.png";
+                         wordLabel.text = filewords2[letternumber];
+                         cuteobject.image = "object/"+ letter + 2 +".png";}} 
+   if (seconds%6 == 1) { 
+     if (mArray[0] == "-"){ menu.image = "background/yellow.png";
+                           cuteobject.image = "object/"+ letter + 2 +".png";}
+   if (mArray[0] == "."){ menu.image = "background/purple.png";
+                         vibration.stop();
+                        wordLabel.text = letter;
+                         cuteobject.image = "blank.png";} }
+    
+   if (seconds%6 == 2) { vibration.stop();
+                       menu.image = "background/purple.png";
+                       wordLabel.text = letter;
+                        cuteobject.image = "blank.png";}
+   
+    if (seconds%6 == 3) {   vibration.start("ring"); 
+    if (mArray[1] == "-"){ menu.image = "background/yellow.png";
+                          wordLabel.text = filewords2[letternumber];
+                          cuteobject.image = "object/"+ letter + 2 +".png";}
+   if (mArray[1] == "."){  menu.image = "background/yellow.png";
+                         wordLabel.text = filewords2[letternumber];
+                         cuteobject.image = "object/"+ letter + 2 +".png";}} 
+   if (seconds%6 == 4) { 
+     if (mArray[1] == "-"){ menu.image = "background/yellow.png";
+                          wordLabel.text = filewords2[letternumber];
+                          cuteobject.image = "object/"+ letter + 2 +".png";}
+   if (mArray[1] == "."){ menu.image = "background/purple.png";
+                         vibration.stop();
+                        wordLabel.text = letter;
+                         cuteobject.image = "blank.png";} }
+  
+   if (seconds%6 == 5) {  menu.image = "background/purple.png";
+                        vibration.stop();
+                       wordLabel.text = letter;
+                        cuteobject.image = "blank.png";}
+  }
+    
+     if (gamenumber == 5){
+       userinputLabel.text = " ";
+        vibration.stop();
        cuteobject.image = "blank.png";
-       if (seconds%2 == 0){ wordLabel.text = "enter";}
-    else{wordLabel.text = "code";}}
-  
-  if ((gamenumber > 0)&&(gamestart == 5)){
+       menu.image = "blank.png";
+       menubutton.onactivate = function(evt) {}
+      if (seconds%2 == 0) {wordLabel.text = "enter";}
+       else { wordLabel.text = letter;}
+      
+    button1.class = "clear text-button bottom left "; 
+    button2.class = "clear text-button bottom right "; 
+    button1.text = "-"; 
+    button2.text = "."; 
+   if (morse.length < 4){
+    button1.onactivate = function(evt) {
+                                       vibration.start("nudge");
+                                       morse  += "-";
+                                       console.log("morse:" + morse );
+                                       morseLabel.text = "morse: " + morse; }
+    button2.onactivate = function(evt) {vibration.start("bump");
+                                            morse  +=".";
+                                       console.log("morse:" + morse );
+                                        morseLabel.text = "morse: " + morse;}
+       if (morse == morsecode) {gamenumber++;}
+   }else{gamenumber = 3;} 
+   
+     }
+    
+       if (gamenumber == 6){
+         menu.image = "background/purple.png"
+          menubutton.onactivate = function(evt) {
+   cuteobject.image = "blank.png";
+   buttonnumber++;
+   gamenumber++;
+  console.log("button number :" + buttonnumber); 
+   console.log("game number :" + gamenumber); 
+ }                   
+         morseLabel.text = " ";
+         button1.class = "none text-button bottom left "; 
+    button2.class = "none text-button bottom right "; 
+         button1.onactivate = function(evt) {}
+          button2.onactivate = function(evt) {}
      if (morse == morsecode){
      wordLabel.text = "correct!";
-      cuteobject.image = "right.png;"}
-     if (morse !== morsecode){
-       wordLabel.text = "correct!";
-     cuteobject.image = "wrong.png;"}}
+      cuteobject.image = "right.png";}
+     else{
+       wordLabel.text = "wrong!";
+     cuteobject.image = "wrong.png";}}
+    
   
-  if ((gamenumber > 0)&&(gamestart == 5)){
+      
+  if (gamenumber > 6){
+    button1.onactivate = function(evt) {}
+          button2.onactivate = function(evt) {}
+     menu.image = "blank.png";
+       menubutton.onactivate = function(evt) {}
     if (seconds%2 == 0){wordLabel.text = "game";
-  userinputLabel.text = "you learned " + letter;}
+  userinputLabel.text = "level: " + letter;}
     else{wordLabel.text = "over";
   userinputLabel.text = "exit to restart";}}
   
