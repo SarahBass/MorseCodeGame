@@ -11,15 +11,18 @@
 
 /*--- Import Information from user Account ---*/
 import { settingsStorage } from "settings";
+import { me as appbit } from "appbit";
+import { HeartRateSensor } from "heart-rate";
+import clock from "clock";
 import * as document from "document";
 import { preferences } from "user-settings";
 import * as util from "../common/utils";
 import { battery } from 'power';
 import { display } from "display";
 import { today as userActivity } from "user-activity";
+import {goals, today} from "user-activity";
+import { units } from "user-settings";
 import { vibration } from "haptics";
-import clock from "clock";
-
 /*--- Create Local Variables for Information Storage ---*/
 var delayInMilliseconds = 100; //1 second
 let buttonnumber = 0;
@@ -27,14 +30,75 @@ let scopenumber = 0;
 let gamenumber = 0;
 let gamestart = 0;
 let scopenumber = 0;
-let morsecode = "";
+let morsecode = "-.";
 let morse = "";
 let letter = "a";
-let letternumber = "1";
-let codeflash = createcode(letter);
+let randomnumber = 1;
+//letter = alphabet[randomnumber];
+const alphabet = ['a',"b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+let letternumber = 0;
+const mArray = ["-", "."];
+const filewords = [                                                
+"ate",
+"bird",
+"clover",
+"donut",
+"exercise",
+"fall",
+"guitar",
+"hat",
+"ice",
+"jerky",
+"king",
+"linen",
+"movie",
+"nice",
+"owl",
+"pretzel",
+"quirky",
+"read",
+"spider",
+"tennis",
+"until",
+"velvet",
+"witch",
+"xy",
+"yum",
+"zany",
+       
+];
+
+const filewords2 = [                                                
+"apple",
+"bat",
+"candy",
+"dreidel",
+"egg",
+"food",
+"ghost",
+"honey",
+"In-n-Out",
+"jumbo",
+"kabob",
+"lucky",
+"mouse",
+"neat",
+"orange",
+"popcorn",
+"queen",
+"reindeer",
+"squirrel",
+"tooth",
+"under",
+"violet",
+"wreath",
+"xx",
+"yellow",
+"zzz"         
+];
 /*--- Import Information from index.gui ---*/
 const myAnimation = document.getElementById("myAnimation");
-myAnimation.animate("enable");
+
 const menubutton = document.getElementById("menubutton");
 const button1 = document.getElementById("button-1");
 const button2 = document.getElementById("button-2");
@@ -51,11 +115,11 @@ const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
 
-letter = generateRandomLetter();
-wordLabel.text = letter;
-letternumber = letter.charCodeAt(0) - 97; 
-morsecode = createcode(letter);
-Array.from(codeflash);
+
+
+
+
+
 
 
 
@@ -63,8 +127,6 @@ Array.from(codeflash);
    cuteobject.image = "blank.png";
    buttonnumber++;
    gamenumber++;
-  if (buttonnumber > 1){
-    buttonnumber = 0;}
   console.log("button number :" + buttonnumber); 
    console.log("game number :" + gamenumber); 
  }                   
@@ -81,7 +143,7 @@ clock.ontick = (evt) => {
   let years = today.getFullYear();
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
-  
+  myAnimation.animate("enable");
 /*--- Update Stats for Screen ---*/
 checkAndUpdateBatteryLevel();
   
@@ -93,17 +155,58 @@ checkAndUpdateBatteryLevel();
   
   if (gamenumber > 0){ userinputLabel.text = morsecode;}
   
-  if ((gamenumber > 0)&&(gamestart == 0)){
-  if (seconds%2 == 0){ wordLabel.text = letter;
-                  cuteobject.image = blank.png; }
-    else{wordLabel.text = filewords[letternumber];
-        cuteobject.image = "object/"+ letter + 1 +".png";}}
+  if (gamenumber ==1){ 
     
-     if ((gamenumber > 0)&&(gamestart == 1)){
-       cuteobject.image = blank.png;
-       if (seconds%2 == 0){ wordLabel.text = "enter";}
-    else{wordLabel.text = "code";}}
-       
+   if (seconds%6 == 0) {  vibration.start("ring"); 
+   if (mArray[0] == "-"){ menu.image = "background/yellow.png";
+                         wordLabel.text = filewords[letternumber];
+                         cuteobject.image = "object/"+ letter + 1 +".png";}
+   if (mArray[0] == "."){ menu.image = "background/yellow.png";
+                         wordLabel.text = filewords[letternumber];
+                         cuteobject.image = "object/"+ letter + 1 +".png";}} 
+   if (seconds%6 == 1) { 
+     if (mArray[0] == "-"){ menu.image = "background/yellow.png";
+                           cuteobject.image = "object/"+ letter + 1 +".png";}
+   if (mArray[0] == "."){ menu.image = "background/purple.png";
+                         vibration.stop();
+                        wordLabel.text = letter;
+                         cuteobject.image = "blank.png";} }
+    
+   if (seconds%6 == 2) { vibration.stop();
+                       menu.image = "background/purple.png";
+                       wordLabel.text = letter;
+                        cuteobject.image = "blank.png";}
+   
+    if (seconds%6 == 3) {   vibration.start("ring"); 
+    if (mArray[1] == "-"){ menu.image = "background/yellow.png";
+                          wordLabel.text = filewords[letternumber];
+                          cuteobject.image = "object/"+ letter + 1 +".png";}
+   if (mArray[1] == "."){  menu.image = "background/yellow.png";
+                         wordLabel.text = filewords[letternumber];
+                         cuteobject.image = "object/"+ letter + 1 +".png";}} 
+   if (seconds%6 == 4) { 
+     if (mArray[1] == "-"){ menu.image = "background/yellow.png";
+                          wordLabel.text = filewords[letternumber];
+                          cuteobject.image = "object/"+ letter + 1 +".png";}
+   if (mArray[1] == "."){ menu.image = "background/purple.png";
+                         vibration.stop();
+                        wordLabel.text = letter;
+                         cuteobject.image = "blank.png";} }
+  
+   if (seconds%6 == 5) {  menu.image = "background/purple.png";
+                        vibration.stop();
+                       wordLabel.text = letter;
+                        cuteobject.image = "blank.png";}
+  }
+    
+     if (gamenumber == 2){
+        vibration.stop();
+       cuteobject.image = "blank.png";
+       menu.image = "background/purple.png";
+      if (seconds%2 == 0) {wordLabel.text = "enter";}
+       else { wordLabel.text = letter;}
+       userinputLabel.text = " ";}
+    
        if ((gamenumber > 0)&&(gamestart == 2)){
      if (morse == morsecode){
      wordLabel.text = "correct!";
@@ -114,22 +217,22 @@ checkAndUpdateBatteryLevel();
     
        if ((gamenumber > 0)&&(gamestart == 3)){
   if (seconds%2 == 0){ wordLabel.text = letter;
-                     cuteobject.image = blank.png;}
+                     cuteobject.image = "blank.png";}
     else{wordLabel.text = filewords2[letternumber];
          cuteobject.image = "object/"+ letter + 2 +".png";}}
   
   if ((gamenumber > 0)&&(gamestart == 4)){
-       cuteobject.image = blank.png;
+       cuteobject.image = "blank.png";
        if (seconds%2 == 0){ wordLabel.text = "enter";}
     else{wordLabel.text = "code";}}
   
   if ((gamenumber > 0)&&(gamestart == 5)){
      if (morse == morsecode){
      wordLabel.text = "correct!";
-      cuteobject.image = right.png;}
+      cuteobject.image = "right.png;"}
      if (morse !== morsecode){
        wordLabel.text = "correct!";
-     cuteobject.image = wrong.png;}}
+     cuteobject.image = "wrong.png;"}}
   
   if ((gamenumber > 0)&&(gamestart == 5)){
     if (seconds%2 == 0){wordLabel.text = "game";
@@ -138,21 +241,12 @@ checkAndUpdateBatteryLevel();
   userinputLabel.text = "exit to restart";}}
   
   
-  for (let i = 0; i < Array.length; i++) {
-   if (seconds%3 == 0) {     
-   if (Array[i] == "-"){ menu.image = "background/yellow.png";}
-   if (Array[i] == "."){ 
-                         menu.image = "background/yellow.png";}} 
-   if (seconds%3 == 1) { 
-     if (Array[i] == "-"){ menu.image = "background/yellow.png";}
-   if (Array[i] == "."){ menu.image = "background/purple.png";} }
-   else {menu.image = "background/purple.png";}
-  }
 /*--- Battery Display---*/
   /*--- Battery Functions ---*/
   display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}});
-
 }
+
+
 /*--- turn on and off start text ---*/  
    //play float animation                                               
 /*
@@ -285,101 +379,38 @@ function checkAndUpdateBatteryLevel() {
         battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
 }
  
-function generateRandomLetter() {
-  let newletter = "a";
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  newletter = alphabet[Math.floor(Math.random() * alphabet.length)];
-  return newletter;
-}
-const filewords = [                                                
-"ate",
-"bird",
-"clover",
-"donut",
-"exercise",
-"fall",
-"guitar",
-"hat",
-"ice",
-"jerky",
-"king",
-"linen",
-"movie",
-"nice",
-"owl",
-"pretzel",
-"quirky",
-"read",
-"spider",
-"tennis",
-"until",
-"velvet",
-"witch",
-"xy",
-"yum",
-"zany",
-       
-];
 
-const filewords2 = [                                                
-"apple",
-"bat",
-"candy",
-"dreidel",
-"egg",
-"food",
-"ghost",
-"honey",
-"In-n-Out",
-"jumbo",
-"kabob",
-"lucky",
-"mouse",
-"neat",
-"orange",
-"popcorn",
-"queen",
-"reindeer",
-"squirrel",
-"tooth",
-"under",
-"violet",
-"wreath",
-"xx",
-"yellow",
-"zzz"         
-];
-                                                
- function createcode(letter){
-   let code = ".-";
-   if (letter == a) {code = ".-";}
-   if (letter == b) {code = "-...";}
-   if (letter == c) {code = "-.-.";}
-   if (letter == d) {code = "-..";}
-   if (letter == e) {code = ".";}
-   if (letter == f) {code = "..-.";}
-   if (letter == g) {code = "--.";}
-   if (letter == h) {code = "....";}
-   if (letter == i) {code = "..";}
-   if (letter == j) {code = ".---";}
-   if (letter == k) {code = "-.-";}
-   if (letter == l) {code = ".-..";}
-   if (letter == m) {code = "--";}
-   if (letter == n) {code = "-.";}
-   if (letter == o) {code = "---";}
-   if (letter == p) {code = ".--.";}
-   if (letter == q) {code = "--.-";}
-   if (letter == r) {code = ".-.";}
-   if (letter == s) {code = "...";}
-   if (letter == t) {code = "-";}
-   if (letter == u) {code = "..-";}
-   if (letter == v) {code = "...-";}
-   if (letter == w) {code = ".--";}
-   if (letter == x) {code = "-..-";}
-   if (letter == y) {code = "-.--";}
-   if (letter == z) {code = "--..";}
- return code;
- }                                               
+                                          
+function createcode(letter){
+  let codeflash = " ";
+   if (letter == 'a') {codeflash = ".-";}
+   if (letter == 'b') {codeflash = "-...";}
+   if (letter == 'c') {codeflash = "-.-.";}
+   if (letter == 'd') {codeflash = "-..";}
+   if (letter == 'e') {codeflash = ".";}
+   if (letter == 'f') {codeflash = "..-.";}
+   if (letter == 'g') {codeflash = "--.";}
+   if (letter == 'h') {codeflash = "....";}
+   if (letter == 'i') {codeflash = "..";}
+   if (letter == 'j') {codeflash = ".---";}
+   if (letter == 'k') {codeflash = "-.-";}
+   if (letter == 'l') {codeflash = ".-..";}
+   if (letter == 'm') {codeflash = "--";}
+   if (letter == 'n') {codeflash = "-.";}
+   if (letter == 'o') {codeflash = "---";}
+   if (letter == 'p') {codeflash = ".--.";}
+   if (letter == 'q') {codeflash = "--.-";}
+   if (letter == 'r') {codeflash = ".-.";}
+   if (letter == 's') {codeflash = "...";}
+   if (letter == 't') {codeflash = "-";}
+   if (letter == 'u') {codeflash = "..-";}
+   if (letter == 'v') {codeflash = "...-";}
+   if (letter == 'w') {codeflash = ".--";}
+   if (letter == 'x') {codeflash = "-..-";}
+   if (letter == 'y') {codeflash = "-.--";}
+   if (letter == 'z') {codeflash = "--..";}
+  return codeflash;
+ };                                               
  
  
  function play(){
