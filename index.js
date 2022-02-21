@@ -31,7 +31,7 @@ let morsecode = "";
 let morse = "";
 let letter = "a";
 let letternumber = "1";
-
+let codeflash = createcode(letter);
 /*--- Import Information from index.gui ---*/
 const myAnimation = document.getElementById("myAnimation");
 myAnimation.animate("enable");
@@ -55,6 +55,7 @@ letter = generateRandomLetter();
 wordLabel.text = letter;
 letternumber = letter.charCodeAt(0) - 97; 
 morsecode = createcode(letter);
+Array.from(codeflash);
 
 
 
@@ -80,7 +81,7 @@ clock.ontick = (evt) => {
   let years = today.getFullYear();
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
- 
+  
 /*--- Update Stats for Screen ---*/
 checkAndUpdateBatteryLevel();
   
@@ -136,8 +137,17 @@ checkAndUpdateBatteryLevel();
     else{wordLabel.text = "over";}
   userinputLabel.text = "exit to restart";}
   }
-    
   
+  for (let i = 0; i < Array.length; i++) {
+   if seconds%3 == 0 {     
+   if (Array[i] == "-"){ menu.image = "background/yellow.png";}
+   if (Array[i] == "."){ 
+                         menu.image = "background/yellow.png";}} 
+   if seconds%3 == 1 { 
+     if (Array[i] == "-"){ menu.image = "background/yellow.png";}
+   if (Array[i] == "."){ menu.image = "background/purple.png";} }
+   else {menu.image = "background/purple.png";}
+  }
 /*--- Battery Display---*/
   /*--- Battery Functions ---*/
   display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}});
@@ -371,28 +381,7 @@ const filewords2 = [
  return code;
  }                                               
  
- function flashletter(letter){
-   let codeflash = createcode(letter);
-   Array.from(codeflash);
-    setTimeout(() => {wordLabel.text = " ";
-                         menu.image = "background/purple.png";}, delayInMilliseconds*5);         
-   for (let i = 0; i < Array.length; i++) {
-   if (Array[i] == "-"){ 
-                         setTimeout(() => {wordLabel.text = "-";
-                         menu.image = "background/yellow.png";}, delayInMilliseconds*10);}
-   if (Array[i] == "."){ 
-                         setTimeout(() => {wordLabel.text = "Watch";
-                         menu.image = "background/yellow.png";}, delayInMilliseconds)*5;}
-   setTimeout(() => {wordLabel.text = " ";
-                         menu.image = "background/purple.png";}, delayInMilliseconds*5);          
-   }
-   
- }                                             
-  
-function scope(){
-  scopenumber++;
-}
-
+ 
  function play(){
   
     button1.class = "clear text-button bottom left "; 
