@@ -5,7 +5,28 @@
  *  Github:     SarahBass
  ---------------------------------------------
  NOTES: 
- All art created by myself using Vectornator
+ All art created by myself using Vectornator.
+ 
+ Three types of animations are used: sprite, 
+ time activated, and transform. The sprite is
+ used because it moves faster and smoother
+ than a time activated animation. On the 
+ Fitbit watch, keeping time activation to 
+ seconds instead of miliseconds seems to 
+ run more smoothly without errors. 
+ 
+ You could optomize this by having holiday modes
+ set by dates or months. You could also use the 
+ users stats to change events. I might make 
+ holiday versions later, so that is why there
+ are a lot of imports that are not used. 
+ 
+ You could also easily change backgrounds using
+ background.image to give it a multi-page feel.
+ 
+ I suggest not adding too many buttons and to 
+ make the buttons as large as possible for 
+ user friendly design. 
  ---------------------------------------------
 */
 
