@@ -24,20 +24,16 @@ import {goals, today} from "user-activity";
 import { units } from "user-settings";
 import { vibration } from "haptics";
 /*--- Create Local Variables for Information Storage ---*/
-var delayInMilliseconds = 100; //1 second
 let buttonnumber = 0;
 let scopenumber = 0;
 let gamenumber = 0;
-let gamestart = 0;
-let scopenumber = 0;
 let morsecode = "-.";
 let morse = "";
-let letter = "a";
-let randomnumber = 1;
-//letter = alphabet[randomnumber];
-const alphabet = ['a',"b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 let letternumber = 0;
-const mArray = ["-", "."];
+let letter = generateString(1);
+const characters ='abcdefghijklmnopqrstuvwxyz';
+const myArray = morsecode.split("");
+let word = "";
 const filewords = [                                                
 "ate",
 "bird",
@@ -96,9 +92,40 @@ const filewords2 = [
 "yellow",
 "zzz"         
 ];
-/*--- Import Information from index.gui ---*/
-const myAnimation = document.getElementById("myAnimation");
 
+   if (letter == 'a') {morsecode = ".-"; letternumber = 0;}
+   if (letter == 'b') {morsecode = "-...";letternumber = 1;}
+   if (letter == 'c') {morsecode = "-.-.";letternumber = 2;}
+   if (letter == 'd') {morsecode = "-..";letternumber = 3;}
+   if (letter == 'e') {morsecode = ".";letternumber = 4;}
+   if (letter == 'f') {morsecode = "..-.";letternumber = 5;}
+   if (letter == 'g') {morsecode = "--.";letternumber = 6;}
+   if (letter == 'h') {morsecode = "....";letternumber = 7;}
+   if (letter == 'i') {morsecode = "..";letternumber = 8;}
+   if (letter == 'j') {morsecode = ".---";letternumber = 9;}
+   if (letter == 'k') {morsecode = "-.-";letternumber = 10;}
+   if (letter == 'l') {morsecode = ".-..";letternumber = 11;}
+   if (letter == 'm') {morsecode = "--";letternumber = 12;}
+   if (letter == 'n') {morsecode = "-.";letternumber = 13;}
+   if (letter == 'o') {morsecode = "---";letternumber = 14;}
+   if (letter == 'p') {morsecode = ".--.";letternumber = 15;}
+   if (letter == 'q') {morsecode = "--.-";letternumber = 16;}
+   if (letter == 'r') {morsecode = ".-.";letternumber = 17;}
+   if (letter == 's') {morsecode = "...";letternumber = 18;}
+   if (letter == 't') {morsecode = "-";letternumber = 19;}
+   if (letter == 'u') {morsecode = "..-";letternumber = 20;}
+   if (letter == 'v') {morsecode = "...-";letternumber = 21;}
+   if (letter == 'w') {morsecode = ".--";letternumber = 22;}
+   if (letter == 'x') {morsecode = "-..-";letternumber = 23;}
+   if (letter == 'y') {morsecode = "-.--";letternumber = 24;}
+   if (letter == 'z') {morsecode = "--..";letternumber = 25;}
+
+/*--- Animation Groups Imported from Index.gui---*/
+var demoinstance = document.getElementById("demoinstance");
+var demogroup = demoinstance.getElementById("demogroup");
+ 
+const myAnimation = document.getElementById("myAnimation");
+/*--- Import Information from index.gui ---*/
 const menubutton = document.getElementById("menubutton");
 const button1 = document.getElementById("button-1");
 const button2 = document.getElementById("button-2");
@@ -131,6 +158,7 @@ clock.ontick = (evt) => {
   let mins = util.zeroPad(today.getMinutes());
   let seconds = today.getSeconds();
   myAnimation.animate("enable");
+   demoinstance.animate("enable"); 
 /*--- Update Stats for Screen ---*/
 checkAndUpdateBatteryLevel();
   
@@ -157,48 +185,31 @@ checkAndUpdateBatteryLevel();
    gamenumber++;
   console.log("button number :" + buttonnumber); 
    console.log("game number :" + gamenumber); 
- }                   
+ }  
     
-   if (seconds%6 == 0) {  vibration.start("ring"); 
-   if (mArray[0] == "-"){ menu.image = "background/yellow.png";
+     for (let i = 0; i < morsecode.length; i++){
+       word = myArray[i];
+   if (seconds%3 == 0) {  vibration.start("ring"); 
+   if (word == '-'){ menu.image = "background/yellow.png";
                          wordLabel.text = filewords[letternumber];
                          cuteobject.image = "object/"+ letter + 1 +".png";}
-   if (mArray[0] == "."){ menu.image = "background/yellow.png";
+   if (word == '.'){ menu.image = "background/yellow.png";
                          wordLabel.text = filewords[letternumber];
                          cuteobject.image = "object/"+ letter + 1 +".png";}} 
-   if (seconds%6 == 1) { 
-     if (mArray[0] == "-"){ menu.image = "background/yellow.png";
+   if (seconds%3 == 1) { 
+     if (word == '-'){ menu.image = "background/yellow.png";
+                      wordLabel.text = filewords1[letternumber];
                            cuteobject.image = "object/"+ letter + 1 +".png";}
-   if (mArray[0] == "."){ menu.image = "background/purple.png";
+   if (word == '.'){ menu.image = "background/purple.png";
                          vibration.stop();
                         wordLabel.text = letter;
                          cuteobject.image = "blank.png";} }
     
-   if (seconds%6 == 2) { vibration.stop();
+   if (seconds%3 == 2) { vibration.stop();
                        menu.image = "background/purple.png";
                        wordLabel.text = letter;
                         cuteobject.image = "blank.png";}
-   
-    if (seconds%6 == 3) {   vibration.start("ring"); 
-    if (mArray[1] == "-"){ menu.image = "background/yellow.png";
-                          wordLabel.text = filewords[letternumber];
-                          cuteobject.image = "object/"+ letter + 1 +".png";}
-   if (mArray[1] == "."){  menu.image = "background/yellow.png";
-                         wordLabel.text = filewords[letternumber];
-                         cuteobject.image = "object/"+ letter + 1 +".png";}} 
-   if (seconds%6 == 4) { 
-     if (mArray[1] == "-"){ menu.image = "background/yellow.png";
-                          wordLabel.text = filewords[letternumber];
-                          cuteobject.image = "object/"+ letter + 1 +".png";}
-   if (mArray[1] == "."){ menu.image = "background/purple.png";
-                         vibration.stop();
-                        wordLabel.text = letter;
-                         cuteobject.image = "blank.png";} }
-  
-   if (seconds%6 == 5) {  menu.image = "background/purple.png";
-                        vibration.stop();
-                       wordLabel.text = letter;
-                        cuteobject.image = "blank.png";}
+    }
   }
     
      if (gamenumber == 2){
@@ -261,47 +272,29 @@ checkAndUpdateBatteryLevel();
  }                   
     userinputLabel.text = morsecode;
     morse = ""; 
-   if (seconds%6 == 0) {  vibration.start("ring"); 
-   if (mArray[0] == "-"){ menu.image = "background/yellow.png";
+        for (let i = 0; i < morsecode.length; i++){
+       word = myArray[i];
+   if (seconds%3 == 0) {  vibration.start("ring"); 
+   if (word == '-'){ menu.image = "background/yellow.png";
                          wordLabel.text = filewords2[letternumber];
                          cuteobject.image = "object/"+ letter + 2 +".png";}
-   if (mArray[0] == "."){ menu.image = "background/yellow.png";
+   if (word == '.'){ menu.image = "background/yellow.png";
                          wordLabel.text = filewords2[letternumber];
                          cuteobject.image = "object/"+ letter + 2 +".png";}} 
-   if (seconds%6 == 1) { 
-     if (mArray[0] == "-"){ menu.image = "background/yellow.png";
-                           cuteobject.image = "object/"+ letter + 2 +".png";}
-   if (mArray[0] == "."){ menu.image = "background/purple.png";
+   if (seconds%3 == 1) { 
+     if (word == '-'){ menu.image = "background/yellow.png";
+                           cuteobject.image = "object/"+ letter + 2 +".png";
+                     wordLabel.text = filewords2[letternumber];}
+   if (word == '.'){ menu.image = "background/purple.png";
                          vibration.stop();
                         wordLabel.text = letter;
                          cuteobject.image = "blank.png";} }
     
-   if (seconds%6 == 2) { vibration.stop();
+   if (seconds%3 == 2) { vibration.stop();
                        menu.image = "background/purple.png";
                        wordLabel.text = letter;
                         cuteobject.image = "blank.png";}
-   
-    if (seconds%6 == 3) {   vibration.start("ring"); 
-    if (mArray[1] == "-"){ menu.image = "background/yellow.png";
-                          wordLabel.text = filewords2[letternumber];
-                          cuteobject.image = "object/"+ letter + 2 +".png";}
-   if (mArray[1] == "."){  menu.image = "background/yellow.png";
-                         wordLabel.text = filewords2[letternumber];
-                         cuteobject.image = "object/"+ letter + 2 +".png";}} 
-   if (seconds%6 == 4) { 
-     if (mArray[1] == "-"){ menu.image = "background/yellow.png";
-                          wordLabel.text = filewords2[letternumber];
-                          cuteobject.image = "object/"+ letter + 2 +".png";}
-   if (mArray[1] == "."){ menu.image = "background/purple.png";
-                         vibration.stop();
-                        wordLabel.text = letter;
-                         cuteobject.image = "blank.png";} }
-  
-   if (seconds%6 == 5) {  menu.image = "background/purple.png";
-                        vibration.stop();
-                       wordLabel.text = letter;
-                        cuteobject.image = "blank.png";}
-  }
+    }}
     
      if (gamenumber == 5){
        userinputLabel.text = " ";
@@ -355,6 +348,7 @@ checkAndUpdateBatteryLevel();
   
       
   if (gamenumber > 6){
+   
     button1.onactivate = function(evt) {}
           button2.onactivate = function(evt) {}
      menu.image = "blank.png";
@@ -371,125 +365,7 @@ checkAndUpdateBatteryLevel();
 }
 
 
-/*--- turn on and off start text ---*/  
-   //play float animation                                               
-/*
-  let p = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(10);
-       wordLabel.text = 'press';
-    }, 1000);
-});
 
-p.then((result) => {
-         
-     setTimeout(() => {
-        wordLabel.text = 'button';
-    }, 1000);   
-       
-    
-    return result* 4;
-});
-*/
-
-  /*
-  if (scopenumber == 0){ setTimeout(function() {wordLabel.text = 'press'; }, 1000);}
- 
- if (scopenumber == 1){ setTimeout(function() {wordLabel.text = 'button'; scopenumber++; }, 1000);}
-
-  if (scopenumber == 2){ setTimeout(function() {wordLabel.text = 'press'; scopenumber++;}, 1000);}
-  
-  if (scopenumber == 3){ setTimeout(function() { wordLabel.text = 'button'; scopenumber++;}, 1000);}
-*/
-
-   /*                  
-
-  if ((gamenumber > 0)&&(gamestart == 0)){
-  if (seconds%2 == 0){ wordLabel.text = letter;}
-    else{wordLabel.text = filewords[letternumber];}
-  
-  setTimeout(() => {letter = generateRandomLetter();
-                          wordLabel.text = letter;
-                          letternumber = letter.charCodeAt(0) - 97; 
-                          morsecode = createcode(letter);
-                          userinputLabel.text = morsecode;
-                          flashletter(letter);}, delayInMilliseconds*10);
- setTimeout(() => {
-                          wordLabel.text = filewords[letternumber];
-                          morsecode = createcode(letter);
-                          cuteobject.image = "object/"+ letter + 1 +".png";
-                          userinputLabel.text = morsecode;
-                          flashletter(letter);}, delayInMilliseconds*10);
-  gamestart++;
-  cuteobject.image = "blank.png";
-  }
-                                                
-   if ((gamenumber > 0)&&(gamestart == 1)){
-      //play run animation 
-       setTimeout(() => {wordLabel.text = "ready?";
-                         menu.image = "background/purple.png";}, delayInMilliseconds*5);
-                         
-  setTimeout(() => {wordLabel.text = "get set";
-                         menu.image = "background/yellow.png";}, delayInMilliseconds*5);
- setTimeout(() => {wordLabel.text = "go!";
-                         menu.image = "background/purple.png";}, delayInMilliseconds*5);
-     cuteobject.image = blank.png; 
-     for(let i = 0; i < createcode(letter).length; i++){morse = play();}
-     
-     if (morse == morsecode){
-     setTimeout(() => {wordLabel.text = "correct!";
-                             cuteobject.image = right.png;
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10); }
-     if (morse !== morsecode){
-     setTimeout(() => {wordLabel.text = "wrong!";
-                         cuteobject.image = wrong.png;   
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10); }
-     
-    gamestart++;
-   }
-   
-                                                
-if ((gamenumber > 0)&&(gamestart == 2)){
-  //play float animation      
-  cuteobject.image = "blank.png";
- setTimeout(() => {wordLabel.text = "round 2";
-                         menu.image = "background/purple.png";}, delayInMilliseconds*5);
-                         
-  setTimeout(() => {wordLabel.text = "letter";
-                         menu.image = "background/yellow.png";}, delayInMilliseconds*5);
- setTimeout(() => {wordLabel.text = letter;
-                         menu.image = "background/purple.png";}, delayInMilliseconds*5);
-  setTimeout(() => { wordLabel.text = filewords2[letternumber];
-                          cuteobject.image = "object/"+ letter + 2 +".png";
-                          flashletter(letter);}, delayInMilliseconds*10);
-     cuteobject.image = blank.png;                   
-     for(let i = 0; i < createcode(letter).length; i++){morse = play();}
-    
-     if (morse == morsecode){
-     setTimeout(() => {wordLabel.text = "correct!";
-                             cuteobject.image = right.png;
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10); }
-     if (morse !== morsecode){
-     setTimeout(() => {wordLabel.text = "wrong!";
-                         cuteobject.image = wrong.png;   
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10); }
-     
-gamestart++;
-}
-                                                
-if ((gamenumber > 0)&&(gamestart == 3)){
-  //play sleep animation
-   cuteobject.image = blank.png;
-  menu.image = "background/purple.png";
-   setTimeout(() => {wordLabel.text = "game";}, delayInMilliseconds*10); 
-   setTimeout(() => {wordLabel.text = "over";}, delayInMilliseconds*10); 
-  setTimeout(() => {wordLabel.text = "restart";}, delayInMilliseconds*10); 
-  setTimeout(() => {wordLabel.text = "to";}, delayInMilliseconds*10); 
-  setTimeout(() => {wordLabel.text = "play";}, delayInMilliseconds*10); 
-  
-}
-   
-  */
 /*----------------------------START OF FUNCTIONS--------------------------------*/
                                                 
  
@@ -503,39 +379,16 @@ function checkAndUpdateBatteryLevel() {
         battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
 }
  
+function generateString(length) {
+    let result = ' ';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result = characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
 
-                                          
-function createcode(letter){
-  let codeflash = " ";
-   if (letter == 'a') {codeflash = ".-";}
-   if (letter == 'b') {codeflash = "-...";}
-   if (letter == 'c') {codeflash = "-.-.";}
-   if (letter == 'd') {codeflash = "-..";}
-   if (letter == 'e') {codeflash = ".";}
-   if (letter == 'f') {codeflash = "..-.";}
-   if (letter == 'g') {codeflash = "--.";}
-   if (letter == 'h') {codeflash = "....";}
-   if (letter == 'i') {codeflash = "..";}
-   if (letter == 'j') {codeflash = ".---";}
-   if (letter == 'k') {codeflash = "-.-";}
-   if (letter == 'l') {codeflash = ".-..";}
-   if (letter == 'm') {codeflash = "--";}
-   if (letter == 'n') {codeflash = "-.";}
-   if (letter == 'o') {codeflash = "---";}
-   if (letter == 'p') {codeflash = ".--.";}
-   if (letter == 'q') {codeflash = "--.-";}
-   if (letter == 'r') {codeflash = ".-.";}
-   if (letter == 's') {codeflash = "...";}
-   if (letter == 't') {codeflash = "-";}
-   if (letter == 'u') {codeflash = "..-";}
-   if (letter == 'v') {codeflash = "...-";}
-   if (letter == 'w') {codeflash = ".--";}
-   if (letter == 'x') {codeflash = "-..-";}
-   if (letter == 'y') {codeflash = "-.--";}
-   if (letter == 'z') {codeflash = "--..";}
-  return codeflash;
- };                                               
- 
+    return result;
+}                                     
+
  
                                          
   
