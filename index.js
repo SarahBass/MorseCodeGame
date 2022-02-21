@@ -198,7 +198,7 @@ checkAndUpdateBatteryLevel();
                          cuteobject.image = "object/"+ letter + 1 +".png";}} 
    if (seconds%3 == 1) { 
      if (word == '-'){ menu.image = "background/yellow.png";
-                      wordLabel.text = filewords1[letternumber];
+                      wordLabel.text = filewords[letternumber];
                            cuteobject.image = "object/"+ letter + 1 +".png";}
    if (word == '.'){ menu.image = "background/purple.png";
                          vibration.stop();
