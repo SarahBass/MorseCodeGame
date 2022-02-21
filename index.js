@@ -335,75 +335,64 @@ if (gamenumber == 6){
                      dog.image = "blank.png";
                      background2.image = "blank.png";
                      menu.image = "background/purple.png"
-          menubutton.onactivate = function(evt) {
-   cuteobject.image = "blank.png";
-   buttonnumber++;
-   gamenumber++;
-  console.log("button number :" + buttonnumber); 
-   console.log("game number :" + gamenumber); 
- }                   
-         morseLabel.text = " ";
-         button1.class = "none text-button bottom left "; 
-    button2.class = "none text-button bottom right "; 
-         button1.onactivate = function(evt) {}
-          button2.onactivate = function(evt) {}
-     if (morse == morsecode){
-     wordLabel.text = "correct!";
-      cuteobject.image = "right.png";}
-     else{
-       wordLabel.text = "wrong!";
-     cuteobject.image = "wrong.png";}}
+                     //reactivate skip ahead button
+                     menubutton.onactivate = function(evt) {
+                     cuteobject.image = "blank.png";
+                     buttonnumber++;
+                     gamenumber++;
+                     console.log("button number :" + buttonnumber); 
+                     console.log("game number :" + gamenumber); }                   
+                     morseLabel.text = " ";
+                     //deactivate morsecode buttons
+                     button1.class = "none text-button bottom left "; 
+                     button2.class = "none text-button bottom right "; 
+                     button1.onactivate = function(evt) {}
+                     button2.onactivate = function(evt) {}
+                     if (morse == morsecode){
+                                             wordLabel.text = "correct!";
+                                             cuteobject.image = "right.png";}
+                    else{
+                                             wordLabel.text = "wrong!";
+                                             cuteobject.image = "wrong.png";}}
     
   
-      
-  if (gamenumber > 6){
-    cuteobject.image = "blank.png";
-   if (seconds%6 == 0){dog.image = "dog1.png";}
-    if (seconds%6 == 1){dog.image = "dog2.png";}
-    if (seconds%6 == 2){dog.image = "dog3.png";}
-    if (seconds%6 == 3){dog.image = "dog4.png";}
-    if (seconds%6 == 4){dog.image = "dog5.png";}
-    if (seconds%6 == 5){dog.image = "dog6.png";}
-    background2.image = "background/background.jpeg";
-    button1.onactivate = function(evt) {}
-          button2.onactivate = function(evt) {}
-     menu.image = "blank.png";
-       menubutton.onactivate = function(evt) {}
-    if (seconds%2 == 0){wordLabel.text = "game";
-  userinputLabel.text = "lvl: " + letter+ " complete";}
-    else{wordLabel.text = "over";
-  userinputLabel.text = "exit to restart";}}
-  
-  
-/*--- Battery Display---*/
-  /*--- Battery Functions ---*/
+//End of game screen      
+if (gamenumber > 6){
+                    cuteobject.image = "blank.png";
+                    if (seconds%6 == 0){dog.image = "dog1.png";}
+                    if (seconds%6 == 1){dog.image = "dog2.png";}
+                    if (seconds%6 == 2){dog.image = "dog3.png";}
+                    if (seconds%6 == 3){dog.image = "dog4.png";}
+                    if (seconds%6 == 4){dog.image = "dog5.png";}
+                    if (seconds%6 == 5){dog.image = "dog6.png";}
+                    background2.image = "background/background.jpeg";
+                    button1.onactivate = function(evt) {}
+                    button2.onactivate = function(evt) {}
+                    menu.image = "blank.png";
+                    menubutton.onactivate = function(evt) {}
+                    if (seconds%2 == 0){wordLabel.text = "game";
+                                        userinputLabel.text = "lvl: " + letter+ " complete";}
+                    else{wordLabel.text = "over";
+                         userinputLabel.text = "exit to restart";}}
+
+  /*-------------------------------------- Battery Functions -------------------------------------*/
   display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}});
 }
 
-
-
 /*----------------------------START OF FUNCTIONS--------------------------------*/
                                                 
- 
-
  /*--- Change Battery RED , GREEN & CHARGE ---*/  
-
 function checkAndUpdateBatteryLevel() {
   batteryLabel.text = `${battery.chargeLevel}%`;
   if (battery.chargeLevel > 30){ batteryLabel.class = "labelgreen";}
   else {batteryLabel.class = "labelred";
-        battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}
-}
+        battery.onchange = (charger, evt) => {batteryLabel.class = "labelgreen";}}}
  
 function generateString(length) {
     let result = ' ';
     const charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-        result = characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-
-    return result;
-}                                     
+    for ( let i = 0; i < length; i++ ) {result = characters.charAt(Math.floor(Math.random() * charactersLength));}
+    return result;}                                     
 
  
                                          
