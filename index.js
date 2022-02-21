@@ -115,14 +115,6 @@ const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
 
-
-
-
-
-
-
-
-
  menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
    buttonnumber++;
@@ -130,6 +122,7 @@ const wordLabel = document.getElementById("wordLabel");
   console.log("button number :" + buttonnumber); 
    console.log("game number :" + gamenumber); 
  }                   
+
 //Update the clock every second 
 clock.granularity = "seconds";
 
@@ -151,11 +144,13 @@ checkAndUpdateBatteryLevel();
   userinputLabel.text = "get started!";
     if (seconds%2 == 0){wordLabel.text = "press";}
     else{wordLabel.text = "button";}
+   
   }
   
-  if (gamenumber > 0){ userinputLabel.text = morsecode;}
+
   
   if (gamenumber ==1){ 
+    userinputLabel.text = morsecode;
     
    if (seconds%6 == 0) {  vibration.start("ring"); 
    if (mArray[0] == "-"){ menu.image = "background/yellow.png";
@@ -200,20 +195,42 @@ checkAndUpdateBatteryLevel();
   }
     
      if (gamenumber == 2){
+       userinputLabel.text = " ";
         vibration.stop();
        cuteobject.image = "blank.png";
-       menu.image = "background/purple.png";
+       menu.image = "blank.png";
       if (seconds%2 == 0) {wordLabel.text = "enter";}
        else { wordLabel.text = letter;}
-       userinputLabel.text = " ";}
+      
+    button1.class = "clear text-button bottom left "; 
+    button2.class = "clear text-button bottom right "; 
+    button1.text = "-"; 
+    button2.text = "."; 
+   if (morse.length < 4){
+    button1.onactivate = function(evt) {
+                                       vibration.start("nudge");
+                                       morse  += "-";
+                                       console.log("morse:" + morse );
+                                       morseLabel.text = "morse: " + morse; }
+    button2.onactivate = function(evt) {vibration.start("bump");
+                                            morse  +=".";
+                                       console.log("morse:" + morse );
+                                        morseLabel.text = "morse: " + morse;}
+       if (morse == morsecode) {gamenumber++;}
+   }else{gamenumber = 3;} 
+   
+     }
     
-       if ((gamenumber > 0)&&(gamestart == 2)){
+       if (gamenumber == 3){
+         morseLabel.text = " ";
+         button1.class = "none text-button bottom left "; 
+    button2.class = "none text-button bottom right "; 
      if (morse == morsecode){
      wordLabel.text = "correct!";
-      cuteobject.image = right.png;}
-     if (morse !== morsecode){
-       wordLabel.text = "correct!";
-     cuteobject.image = wrong.png;}}
+      cuteobject.image = "right.png";}
+     else{
+       wordLabel.text = "wrong!";
+     cuteobject.image = "wrong.png";}}
     
        if ((gamenumber > 0)&&(gamestart == 3)){
   if (seconds%2 == 0){ wordLabel.text = letter;
@@ -413,21 +430,5 @@ function createcode(letter){
  };                                               
  
  
- function play(){
-  
-    button1.class = "clear text-button bottom left "; 
-    button2.class = "clear text-button bottom right "; 
-    button1.text = "-"; 
-    button2.text = "."; 
-   
-    button1.onactivate = function(evt) {
-                                       vibration.start("nudge");
-                                       morse  += "-";
-                                       console.log("morse:" + morse );}
-    button2.onactivate = function(evt) {vibration.start("bump");
-                                            morse  +=".";
-                                       console.log("morse:" + morse ); }
-   
- return morse;
- }                                           
+                                         
   
