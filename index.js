@@ -18,6 +18,7 @@ import { battery } from 'power';
 import { display } from "display";
 import { today as userActivity } from "user-activity";
 import { vibration } from "haptics";
+import clock from "clock";
 
 /*--- Create Local Variables for Information Storage ---*/
 var delayInMilliseconds = 100; //1 second
@@ -49,10 +50,14 @@ const batteryLabel = document.getElementById("batteryLabel");
 const morseLabel = document.getElementById("morseLabel");
 const userinputLabel = document.getElementById("userinputLabel");
 const wordLabel = document.getElementById("wordLabel");
-/*--- Update Stats for Screen ---*/
-checkAndUpdateBatteryLevel();
-/*--- Battery Display---*/
-display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}});         /*--- Button Click Starts Game ---*/                                             
+
+letter = generateRandomLetter();
+wordLabel.text = letter;
+letternumber = letter.charCodeAt(0) - 97; 
+morsecode = createcode(letter);
+
+
+
  menubutton.onactivate = function(evt) {
    cuteobject.image = "blank.png";
    buttonnumber++;
@@ -62,29 +67,119 @@ display.addEventListener('change', function () { if (this.on) {checkAndUpdateBat
   console.log("button number :" + buttonnumber); 
    console.log("game number :" + gamenumber); 
  }                   
+//Update the clock every second 
+clock.granularity = "seconds";
 
+clock.ontick = (evt) => {
+
+  let today = evt.date;
+  let hours = today.getHours();
+  let months = today.getMonth();
+  let days = today.getDay();
+  let dates = today.getDate();
+  let years = today.getFullYear();
+  let mins = util.zeroPad(today.getMinutes());
+  let seconds = today.getSeconds();
+ 
+/*--- Update Stats for Screen ---*/
+checkAndUpdateBatteryLevel();
+  
+  if (gamenumber == 0){
+  userinputLabel.text = "get started!";
+    if (seconds%2 == 0){wordLabel.text = "press";}
+    else{wordLabel.text = "button";}
+  }
+  
+  if (gamenumber > 0){ userinputLabel.text = morsecode;}
+  
+  if ((gamenumber > 0)&&(gamestart == 0)){
+  if (seconds%2 == 0){ wordLabel.text = letter;
+                  cuteobject.image = blank.png; }
+    else{wordLabel.text = filewords[letternumber];
+        cuteobject.image = "object/"+ letter + 1 +".png";}}
+    
+     if ((gamenumber > 0)&&(gamestart == 1)){
+       cuteobject.image = blank.png;
+       if (seconds%2 == 0){ wordLabel.text = "enter";}
+    else{wordLabel.text = "code";}}
+       
+       if ((gamenumber > 0)&&(gamestart == 2)){
+     if (morse == morsecode){
+     wordLabel.text = "correct!";
+      cuteobject.image = right.png;}
+     if (morse !== morsecode){
+       wordLabel.text = "correct!";
+     cuteobject.image = wrong.png;}}
+    
+       if ((gamenumber > 0)&&(gamestart == 3)){
+  if (seconds%2 == 0){ wordLabel.text = letter;
+                     cuteobject.image = blank.png;}
+    else{wordLabel.text = filewords2[letternumber];
+         cuteobject.image = "object/"+ letter + 2 +".png";}}
+  
+  if ((gamenumber > 0)&&(gamestart == 4)){
+       cuteobject.image = blank.png;
+       if (seconds%2 == 0){ wordLabel.text = "enter";}
+    else{wordLabel.text = "code";}}
+  
+  if ((gamenumber > 0)&&(gamestart == 5)){
+     if (morse == morsecode){
+     wordLabel.text = "correct!";
+      cuteobject.image = right.png;}
+     if (morse !== morsecode){
+       wordLabel.text = "correct!";
+     cuteobject.image = wrong.png;}}
+  
+  if ((gamenumber > 0)&&(gamestart == 5)){
+    if (seconds%2 == 0){wordLabel.text = "game";
+  userinputLabel.text = "you learned " + letter;}}
+    else{wordLabel.text = "over";}
+  userinputLabel.text = "exit to restart";}
+  }
+    
+  
+/*--- Battery Display---*/
+  /*--- Battery Functions ---*/
+  display.addEventListener('change', function () { if (this.on) {checkAndUpdateBatteryLevel();}});
+
+}
 /*--- turn on and off start text ---*/  
    //play float animation                                               
-if (gamenumber == 0){
-  userinputLabel.text = "get started!";
- if (scopenumber == 0){ setTimeout(function() { wordLabel.text = 'press';}, 1000);
-  scopenumber++;}
- if (scopenumber == 1){ setTimeout(function() { wordLabel.text = 'button'}, 1000);
-  scopenumber++;}
-  if (scopenumber == 2){ setTimeout(function() { wordLabel.text = 'to'}, 1000);
-  scopenumber++;}
-  if (scopenumber == 3){ setTimeout(function() { wordLabel.text = 'start'}, 1000);
-  scopenumber++;}
-            }          
+/*
+  let p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(10);
+       wordLabel.text = 'press';
+    }, 1000);
+});
+
+p.then((result) => {
+         
+     setTimeout(() => {
+        wordLabel.text = 'button';
+    }, 1000);   
+       
+    
+    return result* 4;
+});
+*/
+
+  /*
+  if (scopenumber == 0){ setTimeout(function() {wordLabel.text = 'press'; }, 1000);}
+ 
+ if (scopenumber == 1){ setTimeout(function() {wordLabel.text = 'button'; scopenumber++; }, 1000);}
+
+  if (scopenumber == 2){ setTimeout(function() {wordLabel.text = 'press'; scopenumber++;}, 1000);}
+  
+  if (scopenumber == 3){ setTimeout(function() { wordLabel.text = 'button'; scopenumber++;}, 1000);}
+*/
+
+   /*                  
 
   if ((gamenumber > 0)&&(gamestart == 0)){
-  //play wag animation  
-  setTimeout(() => {wordLabel.text = "Watch";
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10);                      
-  setTimeout(() => {wordLabel.text = "the";
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10);
-  setTimeout(() => {wordLabel.text = "pattern";
-                         menu.image = "background/purple.png";}, delayInMilliseconds*10);
+  if (seconds%2 == 0){ wordLabel.text = letter;}
+    else{wordLabel.text = filewords[letternumber];}
+  
   setTimeout(() => {letter = generateRandomLetter();
                           wordLabel.text = letter;
                           letternumber = letter.charCodeAt(0) - 97; 
@@ -166,7 +261,7 @@ if ((gamenumber > 0)&&(gamestart == 3)){
   
 }
    
-  
+  */
 /*----------------------------START OF FUNCTIONS--------------------------------*/
                                                 
  
@@ -293,7 +388,11 @@ const filewords2 = [
    }
    
  }                                             
-                                                
+  
+function scope(){
+  scopenumber++;
+}
+
  function play(){
   
     button1.class = "clear text-button bottom left "; 
