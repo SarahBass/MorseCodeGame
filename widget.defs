@@ -4,7 +4,7 @@
     <link rel="import" href="/mnt/sysassets/system_widget.defs" />
     <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
     <symbol id="frames" href="#sprite-image">
-      <animate id="anim" attributeName="value" begin="enable"
+      <animate id="anim" attributeName="value" begin="enable" 
           from="1" to="5" dur="0.5"
           repeatDur="0.5" repeatCount="indefinite" />
       <image href="frame_1.png" width="100%" height="100%" x="0%" y="0%" />
