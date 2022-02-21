@@ -41,9 +41,9 @@ Images    | Images not included
 
 ![alt text](https://github.com/SarahBass/MorseCodeGame/blob/main/1jump.png)
 
-This game includes 2 animations per letter and 3 animations per mode with a total of 14 frames, 2 icons, 55 objects, 2 buttons, and 1 background.
+This game includes 2 animations per letter and 3 animations per mode with a total of 14 frames, 2 icons, 55 objects, 2 buttons, and 1 background. These already existed from my other project ABC Pup for Android, and were repurposed and resized from svgs into small 336x336 and 300x300 pngs or jpegs.
 
-All artwork was made in Vectornator, a free art application on ipad. 
+The space creature (Is it a cat? Is it a dog? It's a pomeranian!) was inspired by my pomeranian. See the cute dog that inspired this app : https://www.instagram.com/koonchki/. :-)
 
-The space creature was inspired by my pomeranian. See the cute dog that inspired this app : https://www.instagram.com/koonchki/
+All artwork was made in Vectornator, a free art application on ipad. I highly reccomend this program for programming, it is much easier to use than adobe, has tons of resources, and is free! https://www.vectornator.io/. I really love this application, and I can't reccomend enough. I've used AI and honestly this is less  headache by far, although if you are making svg animations, adobe works more smoothly with game design platforms. 
 
