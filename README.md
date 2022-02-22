@@ -39,9 +39,11 @@ Images    | Images not included
 
 ## Artwork: 
 
-![alt text](https://github.com/SarahBass/MorseCodeGame/blob/main/1jump.png)
+![alt text](https://github.com/SarahBass/MorseCodeGame/blob/main/GitHub.png)
 
 This game includes 2 animations per letter and 3 animations per mode with a total of 14 frames, 2 icons, 55 objects, 2 buttons, and 1 background. These already existed from my other project ABC Pup for Android, and were repurposed and resized from svgs into small 336x336 and 300x300 pngs or jpegs.
+
+![alt text](https://github.com/SarahBass/MorseCodeGame/blob/main/Untitled.png)
 
 The space creature: Is it a cat? Is it a dog? It's a pomeranian! See the cute dog that inspired this app : https://www.instagram.com/koonchki/. 
 This is actually the logo for my "studio" name , Koonchki Studios. A one girl and one dog studio!  Please be respectful, and do not copy my logo dog 
