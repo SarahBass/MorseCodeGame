@@ -50,6 +50,4 @@ The space creature is actually part of the logo for my studio name for Android, 
 All artwork was made in Vectornator, a free art application on ipad: https://www.vectornator.io/. 
 Many of the objects come from Iconator with a few alterations. This is a free feature of Vectornator. 
 
-<p align="center">
-<img src= "https://github.com/SarahBass/MorseCodeGame/blob/main/Untitled.png">
-</p>
+
