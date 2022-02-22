@@ -45,7 +45,7 @@ This game includes 2 animations per letter and 3 animations per mode with a tota
 
 The space creature: Is it a cat? Is it a dog? It's a pomeranian! See the cute dog that inspired this app : https://www.instagram.com/koonchki/. 
 
-The space creature is actually part of the logo for my studio name for Android, called 'Koonchki Studios'. Yes, it is only a one girl & one dog studio- with no pay, but lots of dog treat bonuses! Please be respectful, and do not copy my logo or art, as the same art is used for Android app and many other projects that I do. Github is a place to share code and ideas, not a place to store (or share) tons of large art files that bloat the system. On a lighter note, what does "Koonchki" mean? Koonchki is the name my grandmother used to call all her grandchildren. She passed away many years ago, but her silliness still lives on in all our hearts <3
+The space creature is actually part of the logo for my required studio name for Android. Yes, it is only a one girl & one dog studio- with no pay, but lots of yummy dog treats! Please be respectful, and do not copy my logo or art, as the same art is used for Android app and many other projects that I do.
 
 All artwork was made in Vectornator, a free art application on ipad: https://www.vectornator.io/. 
 Many of the objects come from Iconator with a few alterations. This is a free feature of Vectornator. 
